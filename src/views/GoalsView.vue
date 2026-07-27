@@ -23,14 +23,12 @@ import ActionLink from "../components/ActionLink.vue";
     </section>
 
     <section class="roadmap" aria-label="Short-term and mid-term plan">
-      <div class="roadmap__now">
-        <span>Now · July 2026</span>
-        <i aria-hidden="true"></i>
-      </div>
-
       <article class="roadmap__phase roadmap__phase--short">
-        <span class="roadmap__date">2026–2027</span>
-        <h2>Start in software or<br />cloud engineering</h2>
+        <div class="roadmap__meta">
+          <span class="roadmap__stage">01 · Short term</span>
+          <span class="roadmap__date">2026–2027</span>
+        </div>
+        <h2>Start in software or cloud engineering</h2>
         <ul>
           <li>Contribute to production systems</li>
           <li>Deepen .NET, Azure, and Vue</li>
@@ -39,29 +37,28 @@ import ActionLink from "../components/ActionLink.vue";
       </article>
 
       <article class="roadmap__phase roadmap__phase--mid">
-        <span class="roadmap__date">From September 2027</span>
-        <h2>Study Software Engineering<br />part-time</h2>
+        <div class="roadmap__meta">
+          <span class="roadmap__stage">02 · Mid term</span>
+          <span class="roadmap__date">From September 2027</span>
+        </div>
+        <h2>Study Software Engineering part-time</h2>
         <ul>
           <li>FH Hagenberg</li>
           <li>Grow into broader technical ownership</li>
           <li>Connect formal study with real delivery</li>
         </ul>
       </article>
-
-      <svg class="roadmap__paths" viewBox="0 0 800 650" aria-hidden="true">
-        <path d="M245 325 C330 325 330 98 420 98 H500" />
-        <path d="M245 325 C330 325 330 480 420 480 H500" />
-        <circle cx="245" cy="325" r="16" />
-        <circle class="roadmap__core" cx="245" cy="325" r="6" />
-        <circle cx="500" cy="98" r="12" />
-        <circle cx="500" cy="480" r="12" />
-      </svg>
     </section>
 
     <section class="continuing-threads" aria-labelledby="threads-heading">
-      <h2 id="threads-heading" class="sr-only">Continuing threads</h2>
-      <div v-for="thread in ['Cloud architecture', 'Reliable interfaces', 'Automation', 'Applied machine learning']" :key="thread">
-        <span>{{ thread }}</span><i aria-hidden="true"></i>
+      <h2 id="threads-heading">Ongoing focus areas</h2>
+      <div class="continuing-threads__list">
+        <span
+          v-for="thread in ['Cloud architecture', 'Reliable interfaces', 'Automation', 'Applied machine learning']"
+          :key="thread"
+        >
+          {{ thread }}
+        </span>
       </div>
     </section>
   </main>
