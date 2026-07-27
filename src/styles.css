@@ -655,6 +655,18 @@ a {
   width: 58%;
 }
 
+.project-status {
+  display: inline-flex;
+  margin-bottom: 11px;
+  border: 1px solid var(--cyan);
+  padding: 6px 9px;
+  color: var(--cyan-dark);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 .project-detail__header h2 {
   margin: 0;
   font-size: clamp(40px, 4vw, 58px);
@@ -670,7 +682,25 @@ a {
   line-height: 1.5;
 }
 
+.project-screenshot {
+  display: grid;
+  height: 350px;
+  place-items: center;
+  margin: 28px 0 15px;
+  border-top: 1px solid var(--cyan);
+  border-bottom: 1px solid var(--cyan);
+  background: var(--cyan-pale);
+}
+
+.project-screenshot img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .architecture {
+  --architecture-node-width: 165px;
+  --architecture-node-radius: 10px;
   position: relative;
   height: 350px;
   margin: 28px 0 15px;
@@ -678,8 +708,9 @@ a {
 
 .architecture__paths {
   position: absolute;
-  inset: 0;
-  width: 100%;
+  inset-block: 0;
+  left: calc(var(--architecture-node-width) - var(--architecture-node-radius));
+  width: calc(100% - 310px);
   height: 100%;
 }
 
@@ -699,9 +730,10 @@ a {
   position: absolute;
   inset-block: 0;
   display: grid;
-  width: 165px;
-  align-content: space-around;
-  padding-block: 35px;
+  width: var(--architecture-node-width);
+  grid-template-rows: repeat(3, 20px);
+  align-content: space-between;
+  padding-block: 50px;
 }
 
 .architecture__column--left {
@@ -1579,6 +1611,8 @@ a {
     position: relative;
     inset: auto;
     width: auto;
+    grid-template-rows: none;
+    align-content: normal;
     padding: 0;
   }
 

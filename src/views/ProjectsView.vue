@@ -71,6 +71,9 @@ const nextProject = () => {
       <Transition name="project" mode="out-in">
         <div :key="selectedProject.id">
           <header class="project-detail__header">
+            <span v-if="selectedProject.status" class="project-status">
+              {{ selectedProject.status }}
+            </span>
             <h2>{{ selectedProject.name }}</h2>
             <p>{{ selectedProject.purpose }}</p>
           </header>

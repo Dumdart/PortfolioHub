@@ -3,12 +3,17 @@ export type ProjectId = "smart-home-bridge" | "clipstack" | "nova" | "serverless
 export interface Project {
   id: ProjectId;
   name: string;
+  status?: string;
   purpose: string;
   result: string;
   technologies: string[];
   leftNodes: string[];
   rightNodes: string[];
   evidence: string[];
+  screenshot?: {
+    src: string;
+    alt: string;
+  };
   repository?: string;
 }
 
@@ -32,46 +37,47 @@ export const projects: Project[] = [
   {
     id: "clipstack",
     name: "ClipStack",
-    purpose: "Replace paper calendars with dependable booking workflows for independent barbershops.",
-    result: "Reliable booking",
+    status: "In development",
+    purpose: "Building dependable booking workflows to replace paper calendars for independent barbershops.",
+    result: "In development",
     technologies: [".NET", "Vue", "Kotlin", "Azure", "PostgreSQL"],
     leftNodes: ["Customer booking", "Manager web", "Staff mobile"],
     rightNodes: ["Azure Functions", "PostgreSQL", "Notifications"],
     evidence: [
-      "Mobile-first booking",
-      "Explicit conflict handling",
-      "Offline-ready staff app",
-      "Reusable booking module",
+      "Active product development",
+      "Web and mobile delivery plan",
+      "Booking conflict model",
+      "Private working repository",
     ],
   },
   {
     id: "nova",
     name: "NOVA",
-    purpose: "Centralize membership, billing, forms, calendars, and email campaigns for a school association.",
-    result: "School administration",
-    technologies: ["Angular", "ASP.NET Core", "C#", "EF Core", "MSSQL"],
-    leftNodes: ["Members", "Invoices", "Forms"],
-    rightNodes: ["Calendar", "Email campaigns", "Azure DevOps"],
+    purpose: "Backend-led event operations for the HTL Neufelden school association, still used from planning and invitations through billing.",
+    result: "Event operations",
+    technologies: ["ASP.NET Core", "EF Core", "C#", "MSSQL", "Angular"],
+    leftNodes: ["Event planning", "Invitations", "Billing"],
+    rightNodes: ["ASP.NET Core API", "EF Core", "MSSQL"],
     evidence: [
-      "Diploma project",
-      "Backend and API ownership",
-      "Full-stack team delivery",
-      "Assessment: Sehr gut",
+      "ASP.NET Core backend ownership",
+      "EF Core data access",
+      "Still used by the school association",
+      "Diploma project · Sehr gut",
     ],
   },
   {
     id: "serverless-portfolio",
-    name: "Serverless Portfolio Hub",
-    purpose: "Demonstrate cloud-native delivery with a Vue frontend and serverless Azure backend.",
-    result: "Cloud-native delivery",
-    technologies: ["Vue", "Azure Functions", "Cosmos DB", "Entra ID", "GitHub Actions"],
-    leftNodes: ["Vue frontend", "Visitor analytics", "Entra ID"],
-    rightNodes: ["Azure Functions", "Cosmos DB", "App Insights"],
+    name: "PortfolioHub",
+    purpose: "Demonstrate DevOps ownership through separate CI/CD pipelines, serverless Azure services, and disciplined secret handling.",
+    result: "DevOps & secure delivery",
+    technologies: ["Vue", "GitHub Actions", "Azure Functions", "Entra ID", "Cosmos DB", "App Insights"],
+    leftNodes: ["Vue frontend", "GitHub Actions", "Environment config"],
+    rightNodes: ["Azure Functions", "Secret handling", "App Insights"],
     evidence: [
-      "Separate CI/CD pipelines",
-      "Serverless architecture",
+      "Separate frontend and backend CI/CD",
+      "Environment-specific configuration",
       "Secure secret handling",
-      "Production monitoring",
+      "Serverless architecture",
     ],
     repository: "https://github.com/Dumdart/CCDEProject-SSPH",
   },
