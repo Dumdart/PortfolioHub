@@ -76,6 +76,11 @@ const nextProject = () => {
             </span>
             <h2>{{ selectedProject.name }}</h2>
             <p>{{ selectedProject.purpose }}</p>
+            <div v-if="selectedProject.repository" class="project-detail__repository">
+              <ActionLink :href="selectedProject.repository" :external="true">
+                Open GitHub repository
+              </ActionLink>
+            </div>
           </header>
 
           <ProjectArchitecture :project="selectedProject" />
@@ -95,14 +100,7 @@ const nextProject = () => {
           </div>
 
           <div class="project-detail__actions">
-            <ActionLink
-              v-if="selectedProject.repository"
-              :href="selectedProject.repository"
-              :external="true"
-            >
-              View public repository
-            </ActionLink>
-            <span v-else class="private-label">Portfolio case study</span>
+            <span v-if="!selectedProject.repository" class="private-label">Portfolio case study</span>
             <button class="action-link action-link--secondary" type="button" @click="nextProject">
               Next project
             </button>
