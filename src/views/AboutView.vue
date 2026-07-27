@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import {
+  PhDownloadSimple,
   PhEnvelopeSimple,
   PhGithubLogo,
   PhLinkedinLogo,
@@ -10,20 +11,58 @@ import {
 
 interface Credential {
   title: string;
-  src: string;
-  alt: string;
+  pages: {
+    src: string;
+    alt: string;
+    label: string;
+  }[];
 }
 
 const credentials: Credential[] = [
   {
     title: "Matura & Diploma",
-    src: "/assets/diploma-redacted.png",
-    alt: "Redacted preview of Paul Thumfart's Matura and diploma certificate",
+    pages: [
+      {
+        src: "/assets/diploma-redacted.png",
+        alt: "Redacted first page of Paul Thumfart's Matura and diploma certificate",
+        label: "Certificate",
+      },
+      {
+        src: "/assets/diploma-redacted-page-2.png",
+        alt: "Redacted examination results from Paul Thumfart's Matura and diploma certificate",
+        label: "Examination results",
+      },
+      {
+        src: "/assets/diploma-redacted-page-3.png",
+        alt: "Curriculum and hours table from Paul Thumfart's Matura and diploma certificate",
+        label: "Curriculum",
+      },
+    ],
   },
   {
     title: "School report 2025/26",
-    src: "/assets/school-report-redacted.png",
-    alt: "Redacted preview of Paul Thumfart's 2025/26 school report",
+    pages: [
+      {
+        src: "/assets/school-report-redacted.png",
+        alt: "Redacted preview of Paul Thumfart's final 2025/26 school report",
+        label: "Final annual report",
+      },
+    ],
+  },
+];
+
+const supportingDocuments = [
+  {
+    title: "Certificate supplement",
+    detail: "English · PDF · 2 pages",
+    href: "/documents/certificate-supplement.pdf",
+    filename: "Paul-Thumfart-Certificate-Supplement.pdf",
+  },
+  {
+    title: "Diploma certificate explanation",
+    detail: "German · PDF · 2 pages",
+    href: "/documents/diploma-certificate-explanation-de.pdf",
+    filename: "Paul-Thumfart-Zeugniserlaeuterung.pdf",
   },
 ];
 
@@ -109,9 +148,25 @@ const openCredential = (credential: Credential) => {
         @click="openCredential(credential)"
       >
         <span>{{ credential.title }}</span>
-        <img :src="credential.src" :alt="credential.alt" />
+        <img :src="credential.pages[0].src" :alt="credential.pages[0].alt" />
       </button>
       <p><PhLockKey :size="20" aria-hidden="true" />Public previews redact personal identifiers.</p>
+
+      <section class="credential-downloads" aria-labelledby="credential-downloads-title">
+        <h3 id="credential-downloads-title">Supporting documents</h3>
+        <a
+          v-for="document in supportingDocuments"
+          :key="document.href"
+          :href="document.href"
+          :download="document.filename"
+        >
+          <span>
+            <strong>{{ document.title }}</strong>
+            <small>{{ document.detail }}</small>
+          </span>
+          <PhDownloadSimple :size="22" aria-hidden="true" />
+        </a>
+      </section>
     </aside>
 
     <dialog ref="dialog" class="credential-dialog" @click.self="dialog?.close()">
@@ -119,7 +174,12 @@ const openCredential = (credential: Credential) => {
         <PhX :size="24" aria-hidden="true" />
       </button>
       <h2>{{ activeCredential.title }}</h2>
-      <img :src="activeCredential.src" :alt="activeCredential.alt" />
+      <div class="credential-dialog__pages">
+        <figure v-for="(page, index) in activeCredential.pages" :key="page.src">
+          <figcaption>{{ index + 1 }} / {{ activeCredential.pages.length }} · {{ page.label }}</figcaption>
+          <img :src="page.src" :alt="page.alt" />
+        </figure>
+      </div>
     </dialog>
   </main>
 </template>
