@@ -51,7 +51,7 @@ const capabilityGroups = [
     </div>
 
     <p class="skills-panel__note">
-      Applied across SmartHomeBridge, ClipStack, NOVA, and PortfolioHub.
+      Applied across SmartHomeBridge, ClipStack, NOVA, PortfolioHub, and Serverless Portfolio Hub.
     </p>
   </section>
 </template>

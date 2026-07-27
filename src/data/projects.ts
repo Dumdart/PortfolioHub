@@ -1,4 +1,9 @@
-export type ProjectId = "smart-home-bridge" | "clipstack" | "nova" | "serverless-portfolio";
+export type ProjectId =
+  | "smart-home-bridge"
+  | "clipstack"
+  | "nova"
+  | "portfolio-hub"
+  | "serverless-portfolio";
 
 export interface Project {
   id: ProjectId;
@@ -66,18 +71,34 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "serverless-portfolio",
+    id: "portfolio-hub",
     name: "PortfolioHub",
-    purpose: "Demonstrate DevOps ownership through separate CI/CD pipelines, serverless Azure services, and disciplined secret handling.",
-    result: "DevOps & secure delivery",
-    technologies: ["Vue", "GitHub Actions", "Azure Functions", "Entra ID", "Cosmos DB", "App Insights"],
+    purpose: "Build and operate this portfolio as a containerized Vue application on an Ubuntu homelab behind Caddy.",
+    result: "Homelab delivery",
+    technologies: ["Vue 3", "TypeScript", "Vite", "Docker", "Nginx", "Caddy"],
+    leftNodes: ["Vue 3", "Vite build", "Docker image"],
+    rightNodes: ["Nginx runtime", "Caddy proxy", "Ubuntu homelab"],
+    evidence: [
+      "Multi-stage Docker build",
+      "Localhost-only container port",
+      "Nginx health check",
+      "Host-level Caddy proxy",
+    ],
+  },
+  {
+    id: "serverless-portfolio",
+    name: "Serverless Portfolio Hub",
+    status: "Alternative hosting study",
+    purpose: "Explore a Vue and Azure Functions serverless deployment. It is a useful cloud reference, but not my preferred hosting platform: self-hosting at home is more convenient and gives me direct DevOps ownership.",
+    result: "Azure reference build",
+    technologies: ["Vue", "Azure Functions", "Cosmos DB", "Entra ID", "GitHub Actions", "App Insights"],
     leftNodes: ["Vue frontend", "GitHub Actions", "Environment config"],
-    rightNodes: ["Azure Functions", "Secret handling", "App Insights"],
+    rightNodes: ["Azure Functions", "Cosmos DB", "App Insights"],
     evidence: [
       "Separate frontend and backend CI/CD",
-      "Environment-specific configuration",
+      "Entra ID authentication",
       "Secure secret handling",
-      "Serverless architecture",
+      "Alternative to homelab hosting",
     ],
     repository: "https://github.com/Dumdart/CCDEProject-SSPH",
   },

@@ -45,7 +45,7 @@ const nextProject = () => {
     <aside class="project-rail">
       <div>
         <h1>Selected systems</h1>
-        <p>Four projects, each built around a real operational problem.</p>
+        <p>Five projects, each built around a real operational problem.</p>
       </div>
 
       <nav aria-label="Project selection">
@@ -102,7 +102,7 @@ const nextProject = () => {
             >
               View public repository
             </ActionLink>
-            <span v-else class="private-label">Private project · portfolio case study</span>
+            <span v-else class="private-label">Portfolio case study</span>
             <button class="action-link action-link--secondary" type="button" @click="nextProject">
               Next project
             </button>
