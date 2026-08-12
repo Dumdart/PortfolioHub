@@ -2,18 +2,13 @@
 import { PhGraduationCap } from "@phosphor-icons/vue";
 import ActionLink from "../components/ActionLink.vue";
 import HomeSkillsPanel from "../components/HomeSkillsPanel.vue";
+import SignalBackdrop from "../components/SignalBackdrop.vue";
+import SocialLinks from "../components/SocialLinks.vue";
 </script>
 
 <template>
   <main class="home-page">
-    <svg
-      class="organic-backdrop organic-backdrop--home"
-      viewBox="0 0 1440 884"
-      preserveAspectRatio="none"
-      aria-hidden="true"
-    >
-      <path d="M0 0H800C815 120 720 165 746 280C774 392 688 438 738 535C790 638 702 702 784 884H0Z" />
-    </svg>
+    <SignalBackdrop variant="home" />
 
     <section class="home-hero">
       <div class="home-copy">
@@ -28,10 +23,16 @@ import HomeSkillsPanel from "../components/HomeSkillsPanel.vue";
           <ActionLink to="/goals" variant="secondary">My next steps</ActionLink>
         </div>
 
+        <SocialLinks label="Contact and social links" />
+
         <div class="qualification">
           <PhGraduationCap :size="24" weight="light" aria-hidden="true" />
           <span>HTL Business Informatics · Graduated 2026 · Upper Austria</span>
         </div>
+
+        <svg class="mobile-signal-divider" viewBox="0 0 390 34" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 11C48 28 78 1 128 14C178 27 212 3 260 15C310 27 344 4 390 12V34H0Z" />
+        </svg>
       </div>
 
       <div class="portrait-anchor">

@@ -3,6 +3,7 @@ import { computed, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import ActionLink from "../components/ActionLink.vue";
 import ProjectArchitecture from "../components/ProjectArchitecture.vue";
+import SignalBackdrop from "../components/SignalBackdrop.vue";
 import { projects, type ProjectId } from "../data/projects";
 
 const route = useRoute();
@@ -33,14 +34,7 @@ const nextProject = () => {
 
 <template>
   <main class="projects-page">
-    <svg
-      class="organic-backdrop organic-backdrop--projects"
-      viewBox="0 0 1440 1024"
-      preserveAspectRatio="none"
-      aria-hidden="true"
-    >
-      <path d="M0 0H466C500 132 380 188 426 312C470 430 368 506 420 626C475 752 360 838 448 1024H0Z" />
-    </svg>
+    <SignalBackdrop variant="projects" />
 
     <aside class="project-rail">
       <div>
