@@ -39,7 +39,7 @@ const nextProject = () => {
     <aside class="project-rail">
       <div>
         <h1>Selected systems</h1>
-        <p>Five projects, each built around a real operational problem.</p>
+        <p>Six projects, each built around a real operational problem.</p>
       </div>
 
       <nav aria-label="Project selection">

@@ -1,5 +1,6 @@
 export type ProjectId =
   | "smart-home-bridge"
+  | "topicgate"
   | "clipstack"
   | "nova"
   | "portfolio-hub"
@@ -23,6 +24,23 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+  {
+    id: "topicgate",
+    name: "TopicGate",
+    status: "First release",
+    purpose: "Provide a local-first MQTT observer and safe MCP gateway, giving people and AI agents the MQTT state they need without exposing broker credentials or device control by default.",
+    result: "Secure MQTT context",
+    technologies: ["Python", "MQTT 5", "MCP", "SQLite", "PySide6", "Keyring"],
+    leftNodes: ["Broker profiles", "Topic filters", "Observed MQTT state"],
+    rightNodes: ["Desktop observer", "Read-only MCP server", "Explicit control mode"],
+    evidence: [
+      "OS-backed credential storage",
+      "Persisted local observation state",
+      "Read-only MCP tools by default",
+      "Explicit control-mode escalation",
+    ],
+    repository: "https://github.com/Dumdart/TopicGate",
+  },
   {
     id: "smart-home-bridge",
     name: "SmartHomeBridge",
