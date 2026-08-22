@@ -1,0 +1,23 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - link "Paul Thumfart, home" [ref=e5] [cursor=pointer]:
+      - /url: /
+      - text: Paul Thumfart
+    - button "Menu" [ref=e6] [cursor=pointer]
+  - main [ref=e12]:
+    - generic [ref=e14]:
+      - heading "Goals & Plans" [level=1] [ref=e15]
+      - paragraph [ref=e16]: What happens next, in order.
+    - generic "Goals and plans roadmap" [ref=e18]:
+      - article [ref=e19]:
+        - generic [ref=e20]: "01"
+        - heading "Start in software or cloud engineering" [level=2] [ref=e21]
+        - generic [ref=e22]: 2026–2027
+      - article [ref=e23]:
+        - generic [ref=e24]: "02"
+        - heading "Study Software Engineering part-time" [level=2] [ref=e25]
+        - generic [ref=e26]: From September 2027
+      - article [ref=e27]:
+        - generic [ref=e28]: "03"
+        - heading "Continue building and learning" [level=2] [ref=e29]
+        - generic [ref=e30]: Ongoing

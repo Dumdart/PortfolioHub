@@ -1,0 +1,58 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - link "Paul Thumfart, home" [ref=e5] [cursor=pointer]:
+      - /url: /
+      - text: Paul Thumfart
+    - navigation [ref=e6]:
+      - link "Projects" [ref=e7] [cursor=pointer]:
+        - /url: /projects
+      - link "Goals & Plans" [ref=e8] [cursor=pointer]:
+        - /url: /goals
+      - link "About" [ref=e9] [cursor=pointer]:
+        - /url: /about
+  - main [ref=e10]:
+    - generic [ref=e11]:
+      - generic [ref=e12]:
+        - heading "Connected systems. Clear decisions. Useful software." [level=1] [ref=e13]: Connected systems.Clear decisions.Useful software.
+        - paragraph [ref=e14]: I turn real operational problems into dependable web, cloud, automation, and machine-learning products.
+        - link "Open project map" [ref=e16] [cursor=pointer]:
+          - /url: /projects
+        - navigation "Contact and social links" [ref=e20]:
+          - link "Email" [ref=e21] [cursor=pointer]:
+            - /url: mailto:paul.thumfart@gmail.com
+          - link "GitHub" [ref=e26] [cursor=pointer]:
+            - /url: https://github.com/Dumdart
+          - link "LinkedIn" [ref=e31] [cursor=pointer]:
+            - /url: https://linkedin.com/in/paul-thumfart-74b7543b8
+        - generic [ref=e36]: HTL Business Informatics · Graduated 2026 · Upper Austria
+      - img "Portrait of Paul Thumfart" [ref=e42]
+      - region [ref=e44]:
+        - heading "Technology stack" [level=2] [ref=e45]
+        - generic "Technology stack" [ref=e46]:
+          - img ".NET" [ref=e47]
+          - img "Microsoft SQL Server" [ref=e50]:
+            - generic [ref=e51]: SQL
+          - img "TypeScript" [ref=e53]:
+            - generic [ref=e54]: TS
+          - img "Angular" [ref=e56]:
+            - generic [ref=e57]: A
+          - img "Vue 3" [ref=e59]:
+            - generic [ref=e60]: V
+          - img "Python" [ref=e62]:
+            - generic [ref=e63]: Py
+          - img "Docker" [ref=e65]
+          - img "GitHub Actions" [ref=e68]:
+            - generic [ref=e69]: CI
+          - img "Azure" [ref=e71]:
+            - generic [ref=e72]: Az
+          - img "PostgreSQL" [ref=e74]:
+            - generic [ref=e75]: pg
+          - img "MQTT" [ref=e77]
+          - img "ESP32" [ref=e80]:
+            - generic [ref=e81]: ESP
+          - img "Kotlin Multiplatform" [ref=e83]:
+            - generic [ref=e84]: K
+          - img "REST APIs" [ref=e86]:
+            - generic [ref=e87]: "{ }"
+          - img "Caddy" [ref=e89]:
+            - generic [ref=e90]: C

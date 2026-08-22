@@ -1,5 +1,6 @@
 export type ProjectId =
   | "smart-home-bridge"
+  | "topicgate"
   | "clipstack"
   | "nova"
   | "portfolio-hub"
@@ -14,15 +15,46 @@ export interface Project {
   technologies: string[];
   leftNodes: string[];
   rightNodes: string[];
-  evidence: string[];
-  screenshot?: {
+  media?: {
     src: string;
     alt: string;
-  };
+    title: string;
+    fit?: "contain" | "cover";
+    surface?: "light" | "dark";
+  }[];
   repository?: string;
+  documentation?: {
+    href: string;
+    label: string;
+  };
 }
 
 export const projects: Project[] = [
+  {
+    id: "topicgate",
+    name: "TopicGate",
+    status: "First release",
+    purpose: "Provide a local-first MQTT observer and safe MCP gateway, giving people and AI agents the MQTT state they need without exposing broker credentials or device control by default.",
+    result: "Secure MQTT context",
+    technologies: ["Python", "MQTT 5", "MCP", "SQLite", "PySide6", "Keyring"],
+    leftNodes: ["Broker profiles", "Topic filters", "Observed MQTT state"],
+    rightNodes: ["Desktop observer", "Read-only MCP server", "Explicit control mode"],
+    media: [
+      {
+        src: "/assets/projects/topicgate/desktop-app.png",
+        alt: "TopicGate desktop observer showing MQTT topics, payload details, and publishing controls",
+        title: "Desktop observer",
+        surface: "light",
+      },
+      {
+        src: "/assets/projects/topicgate/plugin_in_codex.png",
+        alt: "TopicGate plugin installed in Codex with MQTT inspection skills",
+        title: "Codex integration",
+        surface: "dark",
+      },
+    ],
+    repository: "https://github.com/Dumdart/TopicGate",
+  },
   {
     id: "smart-home-bridge",
     name: "SmartHomeBridge",
@@ -31,11 +63,19 @@ export const projects: Project[] = [
     technologies: ["Python", "MQTT", "Docker", "YOLO", "PySide6"],
     leftNodes: ["Omlet door", "ESP32-CAM", "Python bridge"],
     rightNodes: ["MQTT", "Loxone", "YOLO inference"],
-    evidence: [
-      "Docker runtimes",
-      "LoxBerry plugins",
-      "PySide6 diagnostics",
-      "Human-controlled model promotion",
+    media: [
+      {
+        src: "/assets/projects/smarthomebridge/chicken_camerar_loxberry_plugin.png",
+        alt: "SmartHomeBridge chicken camera LoxBerry plugin configuration",
+        title: "Camera integration",
+        surface: "light",
+      },
+      {
+        src: "/assets/projects/smarthomebridge/chicken_door_loxberry_plugin.png",
+        alt: "SmartHomeBridge chicken door LoxBerry plugin controls",
+        title: "Door control",
+        surface: "light",
+      },
     ],
     repository: "https://github.com/Dumdart/SmartHomeBridge",
   },
@@ -48,12 +88,6 @@ export const projects: Project[] = [
     technologies: [".NET", "Vue", "Kotlin", "Azure", "PostgreSQL"],
     leftNodes: ["Customer booking", "Manager web", "Staff mobile"],
     rightNodes: ["Azure Functions", "PostgreSQL", "Notifications"],
-    evidence: [
-      "Active product development",
-      "Web and mobile delivery plan",
-      "Booking conflict model",
-      "Private working repository",
-    ],
   },
   {
     id: "nova",
@@ -63,12 +97,18 @@ export const projects: Project[] = [
     technologies: ["ASP.NET Core", "EF Core", "C#", "MSSQL", "Angular"],
     leftNodes: ["Event planning", "Invitations", "Billing"],
     rightNodes: ["ASP.NET Core API", "EF Core", "MSSQL"],
-    evidence: [
-      "ASP.NET Core backend ownership",
-      "EF Core data access",
-      "Still used by the school association",
-      "Diploma project · Sehr gut",
+    media: [
+      {
+        src: "/assets/projects/nova/nova_dashboard.png",
+        alt: "NOVA dashboard showing event-management functions for the HTL Neufelden school association",
+        title: "Operations dashboard",
+        surface: "light",
+      },
     ],
+    documentation: {
+      href: "/documents/diploma-thesis.pdf",
+      label: "View diploma thesis",
+    },
   },
   {
     id: "portfolio-hub",
@@ -78,12 +118,6 @@ export const projects: Project[] = [
     technologies: ["Vue 3", "TypeScript", "Vite", "Docker", "Nginx", "Caddy"],
     leftNodes: ["Vue 3", "Vite build", "Docker image"],
     rightNodes: ["Nginx runtime", "Caddy proxy", "Ubuntu homelab"],
-    evidence: [
-      "Multi-stage Docker build",
-      "Localhost-only container port",
-      "Nginx health check",
-      "Host-level Caddy proxy",
-    ],
   },
   {
     id: "serverless-portfolio",
@@ -94,11 +128,13 @@ export const projects: Project[] = [
     technologies: ["Vue", "Azure Functions", "Cosmos DB", "Entra ID", "GitHub Actions", "App Insights"],
     leftNodes: ["Vue frontend", "GitHub Actions", "Environment config"],
     rightNodes: ["Azure Functions", "Cosmos DB", "App Insights"],
-    evidence: [
-      "Separate frontend and backend CI/CD",
-      "Entra ID authentication",
-      "Secure secret handling",
-      "Alternative to homelab hosting",
+    media: [
+      {
+        src: "/assets/projects/serverless-portfolio/architecture-diagram.png",
+        alt: "Serverless Portfolio Hub deployment architecture from GitHub Actions to Azure services",
+        title: "Deployment architecture",
+        surface: "dark",
+      },
     ],
     repository: "https://github.com/Dumdart/CCDEProject-SSPH",
   },
