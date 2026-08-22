@@ -2,7 +2,7 @@
 import { computed, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import ActionLink from "../components/ActionLink.vue";
-import ProjectArchitecture from "../components/ProjectArchitecture.vue";
+import ProjectShowcase from "../components/ProjectShowcase.vue";
 import SignalBackdrop from "../components/SignalBackdrop.vue";
 import { projects, type ProjectId } from "../data/projects";
 
@@ -39,7 +39,6 @@ const nextProject = () => {
     <aside class="project-rail">
       <div>
         <h1>Selected systems</h1>
-        <p>Six projects, each built around a real operational problem.</p>
       </div>
 
       <nav aria-label="Project selection">
@@ -68,37 +67,34 @@ const nextProject = () => {
             <span v-if="selectedProject.status" class="project-status">
               {{ selectedProject.status }}
             </span>
-            <h2>{{ selectedProject.name }}</h2>
-            <p>{{ selectedProject.purpose }}</p>
-            <div v-if="selectedProject.repository" class="project-detail__repository">
-              <ActionLink :href="selectedProject.repository" :external="true">
-                Open GitHub repository
-              </ActionLink>
+            <div class="project-detail__title-row">
+              <h2>{{ selectedProject.name }}</h2>
+              <div class="project-detail__actions">
+                <ActionLink
+                  v-if="selectedProject.repository"
+                  :href="selectedProject.repository"
+                  variant="secondary"
+                  :external="true"
+                >
+                  Open GitHub repository
+                </ActionLink>
+                <ActionLink v-if="selectedProject.documentation" :href="selectedProject.documentation.href" variant="secondary">
+                  {{ selectedProject.documentation.label }}
+                </ActionLink>
+                <button class="action-link action-link--secondary" type="button" @click="nextProject">
+                  Next project
+                </button>
+              </div>
             </div>
+            <p>{{ selectedProject.purpose }}</p>
           </header>
 
-          <ProjectArchitecture :project="selectedProject" />
-
-          <div class="evidence">
-            <h3>Evidence</h3>
-            <div class="evidence__items">
-              <span v-for="item in selectedProject.evidence" :key="item">
-                <i aria-hidden="true"></i>{{ item }}
-              </span>
-            </div>
-          </div>
-
           <div class="technologies">
-            <h3>Technologies</h3>
+            <h3>Tech stack</h3>
             <p>{{ selectedProject.technologies.join(" · ") }}</p>
           </div>
 
-          <div class="project-detail__actions">
-            <span v-if="!selectedProject.repository" class="private-label">Portfolio case study</span>
-            <button class="action-link action-link--secondary" type="button" @click="nextProject">
-              Next project
-            </button>
-          </div>
+          <ProjectShowcase v-if="selectedProject.media?.length" :project="selectedProject" />
         </div>
       </Transition>
     </section>

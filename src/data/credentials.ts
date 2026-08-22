@@ -51,6 +51,12 @@ export const credentials: Credential[] = [
 
 export const supportingDocuments: SupportingDocument[] = [
   {
+    title: "Diploma thesis",
+    detail: "English · PDF · 196 pages",
+    href: "/documents/diploma-thesis.pdf",
+    filename: "Paul-Thumfart-Diploma-Thesis.pdf",
+  },
+  {
     title: "Certificate supplement",
     detail: "English · PDF · 2 pages",
     href: "/documents/certificate-supplement.pdf",

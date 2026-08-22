@@ -1,61 +1,48 @@
 <script setup lang="ts">
-import ActionLink from "../components/ActionLink.vue";
 import SignalBackdrop from "../components/SignalBackdrop.vue";
+
+const roadmap = [
+  {
+    number: "01",
+    stage: "Next step",
+    title: "Start in software or cloud engineering",
+    date: "2026–2027",
+  },
+  {
+    number: "02",
+    stage: "Build depth",
+    title: "Study Software Engineering part-time",
+    date: "From September 2027",
+  },
+  {
+    number: "03",
+    stage: "Always",
+    title: "Continue building and learning",
+    date: "Ongoing",
+  },
+];
 </script>
 
 <template>
   <main class="goals-page">
-    <SignalBackdrop variant="goals" />
+    <section class="goals-hero">
+      <SignalBackdrop variant="goals" />
 
-    <section class="goals-copy">
-      <h1>A deliberate<br />next chapter</h1>
-      <p>
-        The plan is simple: build useful systems, grow through ownership, and keep
-        learning close to practice.
-      </p>
-      <ActionLink to="/projects">See the work behind the plan</ActionLink>
+      <div class="goals-copy">
+        <h1>Goals &amp; Plans</h1>
+        <p>Build. Learn. Take ownership.</p>
+      </div>
     </section>
 
-    <div class="goals-network">
-      <section class="roadmap" aria-label="Short-term and mid-term plan">
-        <article class="roadmap__phase roadmap__phase--short">
-          <div class="roadmap__meta">
-            <span class="roadmap__stage">01 · Short term</span>
-            <span class="roadmap__date">2026–2027</span>
-          </div>
-          <h2>Start in software or cloud engineering</h2>
-          <ul>
-            <li>Contribute to production systems</li>
-            <li>Deepen .NET, Azure, and Vue</li>
-            <li>Ship and operate this portfolio from my homelab</li>
-          </ul>
-        </article>
-
-        <article class="roadmap__phase roadmap__phase--mid">
-          <div class="roadmap__meta">
-            <span class="roadmap__stage">02 · Mid term</span>
-            <span class="roadmap__date">From September 2027</span>
-          </div>
-          <h2>Study Software Engineering part-time</h2>
-          <ul>
-            <li>FH Hagenberg</li>
-            <li>Grow into broader technical ownership</li>
-            <li>Connect formal study with real delivery</li>
-          </ul>
-        </article>
-      </section>
-
-      <section class="continuing-threads" aria-labelledby="threads-heading">
-        <h2 id="threads-heading">Ongoing focus areas</h2>
-        <div class="continuing-threads__list">
-          <span
-            v-for="thread in ['Cloud architecture', 'Reliable interfaces', 'Automation', 'Applied machine learning']"
-            :key="thread"
-          >
-            {{ thread }}
-          </span>
+    <section class="goals-roadmap" aria-label="Goals and plans roadmap">
+      <article v-for="step in roadmap" :key="step.number" class="roadmap-step">
+        <div class="roadmap-step__meta">
+          <span>{{ step.number }}</span>
+          <time>{{ step.date }}</time>
         </div>
-      </section>
-    </div>
+        <h2>{{ step.title }}</h2>
+        <p>{{ step.stage }}</p>
+      </article>
+    </section>
   </main>
 </template>

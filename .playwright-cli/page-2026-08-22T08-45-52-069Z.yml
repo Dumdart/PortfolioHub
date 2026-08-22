@@ -1,0 +1,51 @@
+- generic [ref=f1e3]:
+  - banner [ref=f1e4]:
+    - link "Paul Thumfart, home" [ref=f1e5] [cursor=pointer]:
+      - /url: /
+      - text: Paul Thumfart
+    - button "Menu" [ref=f1e6] [cursor=pointer]
+  - main [ref=f1e12]:
+    - generic [ref=f1e14]:
+      - heading "Goals & Plans" [level=1] [ref=f1e15]
+      - paragraph [ref=f1e16]: A practical path from hands-on engineering to deeper technical ownership—without ever separating learning from building.
+    - region [ref=f1e17]:
+      - generic [ref=f1e18]:
+        - paragraph [ref=f1e19]: What comes next
+        - heading "One chapter at a time." [level=2] [ref=f1e20]
+      - region "Goals and plans roadmap" [ref=f1e21]:
+        - article [ref=f1e22]:
+          - generic [ref=f1e23]: "01"
+          - generic [ref=f1e24]:
+            - generic [ref=f1e25]: Next step
+            - time [ref=f1e26]: 2026–2027
+          - generic [ref=f1e27]:
+            - heading "Start in software or cloud engineering" [level=3] [ref=f1e28]
+            - paragraph [ref=f1e29]: Join a product team, take responsibility for production systems, and turn practical experience into dependable software.
+            - list "Focus areas" [ref=f1e30]:
+              - listitem [ref=f1e31]: Production systems
+              - listitem [ref=f1e32]: .NET, Azure & Vue
+              - listitem [ref=f1e33]: Operate what I ship
+        - article [ref=f1e34]:
+          - generic [ref=f1e35]: "02"
+          - generic [ref=f1e36]:
+            - generic [ref=f1e37]: Build depth
+            - time [ref=f1e38]: From September 2027
+          - generic [ref=f1e39]:
+            - heading "Study Software Engineering part-time" [level=3] [ref=f1e40]
+            - paragraph [ref=f1e41]: Connect formal study with real delivery and grow from implementing features into broader technical ownership.
+            - list "Focus areas" [ref=f1e42]:
+              - listitem [ref=f1e43]: FH Hagenberg
+              - listitem [ref=f1e44]: Part-time study
+              - listitem [ref=f1e45]: Technical ownership
+        - article [ref=f1e46]:
+          - generic [ref=f1e47]: "03"
+          - generic [ref=f1e48]:
+            - generic [ref=f1e49]: Always
+            - time [ref=f1e50]: Ongoing
+          - generic [ref=f1e51]:
+            - heading "Continue building and learning" [level=3] [ref=f1e52]
+            - paragraph [ref=f1e53]: Keep learning close to practice through useful side projects, thoughtful interfaces, automation, and applied machine learning.
+            - list "Focus areas" [ref=f1e54]:
+              - listitem [ref=f1e55]: Useful side projects
+              - listitem [ref=f1e56]: Reliable interfaces
+              - listitem [ref=f1e57]: Applied learning

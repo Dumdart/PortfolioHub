@@ -1,0 +1,57 @@
+- generic [ref=f2e3]:
+  - banner [ref=f2e4]:
+    - link "Paul Thumfart, home" [ref=f2e5] [cursor=pointer]:
+      - /url: /
+      - text: Paul Thumfart
+    - navigation [ref=f2e6]:
+      - link "Projects" [ref=f2e7] [cursor=pointer]:
+        - /url: /projects
+      - link "Goals & Plans" [ref=f2e8] [cursor=pointer]:
+        - /url: /goals
+      - link "About" [ref=f2e9] [cursor=pointer]:
+        - /url: /about
+  - main [ref=f2e10]:
+    - generic [ref=f2e12]:
+      - heading "Goals & Plans" [level=1] [ref=f2e13]
+      - paragraph [ref=f2e14]: A practical path from hands-on engineering to deeper technical ownership—without ever separating learning from building.
+    - region [ref=f2e15]:
+      - generic [ref=f2e16]:
+        - paragraph [ref=f2e17]: What comes next
+        - heading "One chapter at a time." [level=2] [ref=f2e18]
+      - region "Goals and plans roadmap" [ref=f2e19]:
+        - article [ref=f2e20]:
+          - generic [ref=f2e21]: "01"
+          - generic [ref=f2e22]:
+            - generic [ref=f2e23]: Next step
+            - time [ref=f2e24]: 2026–2027
+          - generic [ref=f2e25]:
+            - heading "Start in software or cloud engineering" [level=3] [ref=f2e26]
+            - paragraph [ref=f2e27]: Join a product team, take responsibility for production systems, and turn practical experience into dependable software.
+            - list "Focus areas" [ref=f2e28]:
+              - listitem [ref=f2e29]: Production systems
+              - listitem [ref=f2e30]: .NET, Azure & Vue
+              - listitem [ref=f2e31]: Operate what I ship
+        - article [ref=f2e32]:
+          - generic [ref=f2e33]: "02"
+          - generic [ref=f2e34]:
+            - generic [ref=f2e35]: Build depth
+            - time [ref=f2e36]: From September 2027
+          - generic [ref=f2e37]:
+            - heading "Study Software Engineering part-time" [level=3] [ref=f2e38]
+            - paragraph [ref=f2e39]: Connect formal study with real delivery and grow from implementing features into broader technical ownership.
+            - list "Focus areas" [ref=f2e40]:
+              - listitem [ref=f2e41]: FH Hagenberg
+              - listitem [ref=f2e42]: Part-time study
+              - listitem [ref=f2e43]: Technical ownership
+        - article [ref=f2e44]:
+          - generic [ref=f2e45]: "03"
+          - generic [ref=f2e46]:
+            - generic [ref=f2e47]: Always
+            - time [ref=f2e48]: Ongoing
+          - generic [ref=f2e49]:
+            - heading "Continue building and learning" [level=3] [ref=f2e50]
+            - paragraph [ref=f2e51]: Keep learning close to practice through useful side projects, thoughtful interfaces, automation, and applied machine learning.
+            - list "Focus areas" [ref=f2e52]:
+              - listitem [ref=f2e53]: Useful side projects
+              - listitem [ref=f2e54]: Reliable interfaces
+              - listitem [ref=f2e55]: Applied learning

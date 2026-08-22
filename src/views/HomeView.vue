@@ -11,16 +11,28 @@ import SocialLinks from "../components/SocialLinks.vue";
     <SignalBackdrop variant="home" />
 
     <section class="home-hero">
+      <section class="home-profile" aria-label="Profile">
+        <div class="portrait-anchor">
+          <img src="/assets/paul-thumfart.jpg" alt="Portrait of Paul Thumfart" />
+        </div>
+
+        <div class="profile-identity">
+          <h2>Paul<br />Thumfart</h2>
+          <p>Software Engineer ·<br />Automation &amp; Cloud</p>
+        </div>
+      </section>
+
       <div class="home-copy">
         <h1>Connected systems.<br />Clear decisions.<br />Useful software.</h1>
         <p>
           I turn real operational problems into dependable web, cloud, automation,
           and machine-learning products.
         </p>
+      </div>
 
+      <div class="home-utility">
         <div class="home-actions">
           <ActionLink to="/projects">Open project map</ActionLink>
-          <ActionLink to="/goals" variant="secondary">My next steps</ActionLink>
         </div>
 
         <SocialLinks label="Contact and social links" />
@@ -33,10 +45,6 @@ import SocialLinks from "../components/SocialLinks.vue";
         <svg class="mobile-signal-divider" viewBox="0 0 390 34" preserveAspectRatio="none" aria-hidden="true">
           <path d="M0 11C48 28 78 1 128 14C178 27 212 3 260 15C310 27 344 4 390 12V34H0Z" />
         </svg>
-      </div>
-
-      <div class="portrait-anchor">
-        <img src="/assets/paul-thumfart.jpg" alt="Portrait of Paul Thumfart" />
       </div>
 
       <div class="home-skills-wrap">

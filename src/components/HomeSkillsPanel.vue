@@ -1,57 +1,60 @@
 <script setup lang="ts">
-const capabilityGroups = [
-  {
-    number: "01",
-    title: "Backend & APIs",
-    skills: [".NET", "ASP.NET Core", "EF Core", "Azure Functions"],
-  },
-  {
-    number: "02",
-    title: "Frontend",
-    skills: ["Vue 3", "TypeScript", "Angular", "Accessible UI"],
-  },
-  {
-    number: "03",
-    title: "Cloud & delivery",
-    skills: ["Azure", "Docker", "GitHub Actions", "Caddy"],
-  },
-  {
-    number: "04",
-    title: "Data",
-    skills: ["PostgreSQL", "MSSQL", "Cosmos DB", "SQL design"],
-  },
-  {
-    number: "05",
-    title: "Automation & devices",
-    skills: ["Python", "MQTT", "ESP32", "Loxone"],
-  },
-  {
-    number: "06",
-    title: "Mobile & systems",
-    skills: ["Kotlin Multiplatform", "REST", "Offline workflows"],
-  },
+import { Icon } from "@iconify/vue";
+import angularIcon from "@iconify-icons/logos/angular-icon";
+import azureIcon from "@iconify-icons/logos/microsoft-azure";
+import csharpIcon from "@iconify-icons/logos/c-sharp";
+import dockerIcon from "@iconify-icons/logos/docker-icon";
+import dotnetIcon from "@iconify-icons/logos/dotnet";
+import kotlinIcon from "@iconify-icons/logos/kotlin-icon";
+import postgresqlIcon from "@iconify-icons/logos/postgresql";
+import pythonIcon from "@iconify-icons/logos/python";
+import typescriptIcon from "@iconify-icons/logos/typescript-icon";
+import vueIcon from "@iconify-icons/logos/vue";
+import espressifIcon from "@iconify-icons/simple-icons/espressif";
+import mqttIcon from "@iconify-icons/simple-icons/mqtt";
+import sqlServerIcon from "@iconify-icons/simple-icons/microsoftsqlserver";
+
+const technologies = [
+  { name: ".NET", icon: dotnetIcon, className: "dotnet" },
+  { name: "C#", icon: csharpIcon, className: "csharp" },
+  { name: "Microsoft SQL Server", icon: sqlServerIcon, className: "sql", color: "#cc2927" },
+  { name: "TypeScript", icon: typescriptIcon, className: "typescript" },
+  { name: "Angular", icon: angularIcon, className: "angular" },
+  { name: "Vue 3", icon: vueIcon, className: "vue" },
+  { name: "Python", icon: pythonIcon, className: "python" },
+  { name: "Docker", icon: dockerIcon, className: "docker" },
+  { name: "Azure", icon: azureIcon, className: "azure" },
+  { name: "PostgreSQL", icon: postgresqlIcon, className: "postgres" },
+  { name: "MQTT", icon: mqttIcon, className: "mqtt", color: "#660066" },
+  { name: "ESP32", icon: espressifIcon, className: "esp", color: "#e7352c" },
+  { name: "Kotlin Multiplatform", icon: kotlinIcon, className: "kotlin" },
+  { name: "REST APIs", mark: "{ API }", className: "rest" },
 ];
 </script>
 
 <template>
   <section class="skills-panel" aria-labelledby="skills-heading">
-    <div class="skills-panel__intro">
-      <span>Core capabilities</span>
-      <h2 id="skills-heading">Skills used to ship complete systems.</h2>
-    </div>
+    <h2 id="skills-heading" class="sr-only">Technology stack</h2>
 
-    <div class="skills-panel__grid">
-      <article v-for="group in capabilityGroups" :key="group.number">
-        <span class="skills-panel__number">{{ group.number }}</span>
-        <div>
-          <h3>{{ group.title }}</h3>
-          <p>{{ group.skills.join(" · ") }}</p>
-        </div>
-      </article>
+    <div class="skills-panel__stickers" aria-label="Technology stack">
+      <div
+        v-for="technology in technologies"
+        :key="technology.name"
+        class="tech-sticker"
+        :class="`tech-sticker--${technology.className}`"
+        :aria-label="technology.name"
+        role="img"
+      >
+        <Icon
+          v-if="technology.icon"
+          :icon="technology.icon"
+          class="tech-sticker__logo"
+          :style="technology.color ? { color: technology.color } : undefined"
+          aria-hidden="true"
+        />
+        <span v-else class="tech-sticker__mark" aria-hidden="true">{{ technology.mark }}</span>
+        <span class="tech-sticker__name">{{ technology.name }}</span>
+      </div>
     </div>
-
-    <p class="skills-panel__note">
-      Applied across SmartHomeBridge, ClipStack, NOVA, PortfolioHub, and Serverless Portfolio Hub.
-    </p>
   </section>
 </template>
