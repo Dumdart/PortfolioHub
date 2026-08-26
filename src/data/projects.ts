@@ -16,11 +16,13 @@ export interface Project {
   technologies: string[];
   leftNodes: string[];
   rightNodes: string[];
-  evidence: string[];
-  screenshot?: {
+  media?: {
     src: string;
     alt: string;
-  };
+    title: string;
+    fit?: "contain" | "cover";
+    surface?: "light" | "dark";
+  }[];
   repository?: string;
   documentation?: {
     href: string;
@@ -38,16 +40,20 @@ export const projects: Project[] = [
     technologies: ["Python", "MQTT 5", "MCP", "SQLite", "PySide6", "Keyring"],
     leftNodes: ["Broker profiles", "Topic filters", "Local persistence"],
     rightNodes: ["Desktop observer", "Agent-ready MCP server", "Explicit control mode"],
-    evidence: [
-      "Published Python package",
-      "Official MCP Registry listing",
-      "Plugin for agents",
-      "Read-only safety boundary",
+    media: [
+      {
+        src: "/assets/projects/topicgate/desktop-app.png",
+        alt: "TopicGate desktop observer showing MQTT topics, payload details, and publishing controls",
+        title: "Desktop observer",
+        surface: "light",
+      },
+      {
+        src: "/assets/projects/topicgate/plugin_in_codex.png",
+        alt: "TopicGate plugin for agents providing secure MQTT inspection skills",
+        title: "Plugin for agents",
+        surface: "dark",
+      },
     ],
-    screenshot: {
-      src: "/assets/projects/topicgate/desktop-app.png",
-      alt: "TopicGate desktop observer showing MQTT topics, payload details, and publishing controls",
-    },
     repository: "https://github.com/Dumdart/TopicGate",
   },
   {
@@ -59,16 +65,20 @@ export const projects: Project[] = [
     technologies: ["Python", "MQTT", "LoxBerry", "Loxone", "Docker", "Omlet API"],
     leftNodes: ["Omlet chicken door", "Door telemetry", "Manual commands"],
     rightNodes: ["Retained MQTT topics", "Loxone automation", "LoxBerry plugin"],
-    evidence: [
-      "Published LoxBerry plugin",
-      "Stable retained MQTT contract",
-      "Manual door controls",
-      "Experimental camera integration",
+    media: [
+      {
+        src: "/assets/projects/smarthomebridge/chicken_camerar_loxberry_plugin.png",
+        alt: "Experimental SmartHomeBridge chicken camera LoxBerry plugin configuration",
+        title: "Experimental camera integration",
+        surface: "light",
+      },
+      {
+        src: "/assets/projects/smarthomebridge/chicken_door_loxberry_plugin.png",
+        alt: "SmartHomeBridge chicken door LoxBerry plugin controls",
+        title: "Door control",
+        surface: "light",
+      },
     ],
-    screenshot: {
-      src: "/assets/projects/smarthomebridge/chicken_door_loxberry_plugin.png",
-      alt: "SmartHomeBridge chicken door LoxBerry plugin controls",
-    },
     repository: "https://github.com/Dumdart/SmartHomeBridge",
     documentation: {
       href: "https://wiki.loxberry.de/plugins/omlet_chicken_door_plugin/start",
@@ -84,12 +94,6 @@ export const projects: Project[] = [
     technologies: [".NET", "Vue", "Kotlin", "Azure", "PostgreSQL"],
     leftNodes: ["Customer booking", "Manager web", "Staff mobile"],
     rightNodes: ["Azure Functions", "PostgreSQL", "Notifications"],
-    evidence: [
-      "Active product development",
-      "Web and mobile delivery plan",
-      "Booking conflict model",
-      "Private working repository",
-    ],
   },
   {
     id: "nova",
@@ -99,12 +103,18 @@ export const projects: Project[] = [
     technologies: ["ASP.NET Core", "EF Core", "C#", "MSSQL", "Angular"],
     leftNodes: ["Event planning", "Invitations", "Billing"],
     rightNodes: ["ASP.NET Core API", "EF Core", "MSSQL"],
-    evidence: [
-      "ASP.NET Core backend ownership",
-      "EF Core data access",
-      "Still used by the school association",
-      "Diploma project · Sehr gut",
+    media: [
+      {
+        src: "/assets/projects/nova/nova_dashboard.png",
+        alt: "NOVA dashboard showing event-management functions for the HTL Neufelden school association",
+        title: "Operations dashboard",
+        surface: "light",
+      },
     ],
+    documentation: {
+      href: "/documents/diploma-thesis.pdf",
+      label: "View diploma thesis",
+    },
   },
   {
     id: "homelab",
@@ -115,12 +125,6 @@ export const projects: Project[] = [
     technologies: ["Ubuntu", "Docker", "Docker Compose", "Caddy", "Nginx"],
     leftNodes: ["Repurposed PC", "Containerized projects", "Local network"],
     rightNodes: ["Caddy reverse proxy", "Self-hosted services", "Hands-on operations"],
-    evidence: [
-      "Repurposed spare compute",
-      "Containerized project hosting",
-      "Caddy reverse proxy",
-      "Hands-on service operations",
-    ],
   },
   {
     id: "portfolio-hub",
@@ -130,12 +134,6 @@ export const projects: Project[] = [
     technologies: ["Vue 3", "TypeScript", "Vite", "Docker", "Nginx", "Caddy"],
     leftNodes: ["Vue 3", "Vite build", "Docker image"],
     rightNodes: ["Nginx runtime", "Caddy proxy", "Ubuntu homelab"],
-    evidence: [
-      "Multi-stage Docker build",
-      "Localhost-only container port",
-      "Nginx health check",
-      "Host-level Caddy proxy",
-    ],
   },
   {
     id: "serverless-portfolio",
@@ -146,11 +144,13 @@ export const projects: Project[] = [
     technologies: ["Vue", "Azure Functions", "Cosmos DB", "Entra ID", "GitHub Actions", "App Insights"],
     leftNodes: ["Vue frontend", "GitHub Actions", "Environment config"],
     rightNodes: ["Azure Functions", "Cosmos DB", "App Insights"],
-    evidence: [
-      "Separate frontend and backend CI/CD",
-      "Entra ID authentication",
-      "Secure secret handling",
-      "Alternative to homelab hosting",
+    media: [
+      {
+        src: "/assets/projects/serverless-portfolio/architecture-diagram.png",
+        alt: "Serverless Portfolio Hub deployment architecture from GitHub Actions to Azure services",
+        title: "Deployment architecture",
+        surface: "dark",
+      },
     ],
     repository: "https://github.com/Dumdart/CCDEProject-SSPH",
   },

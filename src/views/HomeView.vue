@@ -28,7 +28,6 @@ import SocialLinks from "../components/SocialLinks.vue";
           I turn real operational problems into dependable web, cloud, automation,
           and machine-learning products.
         </p>
-
       </div>
 
       <div class="home-utility">

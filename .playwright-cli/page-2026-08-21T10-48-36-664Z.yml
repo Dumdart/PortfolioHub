@@ -1,0 +1,61 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - link "Paul Thumfart, home" [ref=e5] [cursor=pointer]:
+      - /url: /
+      - text: Paul Thumfart
+    - navigation [ref=e6]:
+      - link "Projects" [ref=e7] [cursor=pointer]:
+        - /url: /projects
+      - link "Goals & Plans" [ref=e8] [cursor=pointer]:
+        - /url: /goals
+      - link "About" [ref=e9] [cursor=pointer]:
+        - /url: /about
+  - main [ref=e10]:
+    - generic [ref=e11]:
+      - generic [ref=e12]:
+        - heading "Connected systems. Clear decisions. Useful software." [level=1] [ref=e13]: Connected systems.Clear decisions.Useful software.
+        - paragraph [ref=e14]: I turn real operational problems into dependable web, cloud, automation, and machine-learning products.
+        - link "Open project map" [ref=e16] [cursor=pointer]:
+          - /url: /projects
+        - navigation "Contact and social links" [ref=e20]:
+          - link "Email" [ref=e21] [cursor=pointer]:
+            - /url: mailto:paul.thumfart@gmail.com
+          - link "GitHub" [ref=e26] [cursor=pointer]:
+            - /url: https://github.com/Dumdart
+          - link "LinkedIn" [ref=e31] [cursor=pointer]:
+            - /url: https://linkedin.com/in/paul-thumfart-74b7543b8
+        - generic [ref=e36]: HTL Business Informatics · Graduated 2026 · Upper Austria
+      - img "Portrait of Paul Thumfart" [ref=e42]
+      - region [ref=e44]:
+        - generic [ref=e45]:
+          - text: Core capabilities
+          - heading "Skills used to ship complete systems." [level=2] [ref=e46]
+        - generic "Technology stack" [ref=e47]:
+          - img ".NET" [ref=e48]
+          - img "Microsoft SQL Server" [ref=e51]:
+            - generic [ref=e52]: SQL
+          - img "TypeScript" [ref=e54]:
+            - generic [ref=e55]: TS
+          - img "Angular" [ref=e57]:
+            - generic [ref=e58]: A
+          - img "Vue 3" [ref=e60]:
+            - generic [ref=e61]: V
+          - img "Python" [ref=e63]:
+            - generic [ref=e64]: Py
+          - img "Docker" [ref=e66]
+          - img "GitHub Actions" [ref=e69]:
+            - generic [ref=e70]: CI
+          - img "Azure" [ref=e72]:
+            - generic [ref=e73]: Az
+          - img "PostgreSQL" [ref=e75]:
+            - generic [ref=e76]: pg
+          - img "MQTT" [ref=e78]
+          - img "ESP32" [ref=e81]:
+            - generic [ref=e82]: ESP
+          - img "Kotlin Multiplatform" [ref=e84]:
+            - generic [ref=e85]: K
+          - img "REST APIs" [ref=e87]:
+            - generic [ref=e88]: "{ }"
+          - img "Caddy" [ref=e90]:
+            - generic [ref=e91]: C
+        - paragraph [ref=e93]: Applied across SmartHomeBridge, ClipStack, NOVA, PortfolioHub, and Serverless Portfolio Hub.
