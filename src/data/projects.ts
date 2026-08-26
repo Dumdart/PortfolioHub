@@ -1,7 +1,9 @@
 export type ProjectId =
   | "smart-home-bridge"
+  | "topicgate"
   | "clipstack"
   | "nova"
+  | "homelab"
   | "portfolio-hub"
   | "serverless-portfolio";
 
@@ -20,24 +22,58 @@ export interface Project {
     alt: string;
   };
   repository?: string;
+  documentation?: {
+    href: string;
+    label: string;
+  };
 }
 
 export const projects: Project[] = [
   {
+    id: "topicgate",
+    name: "TopicGate",
+    status: "Published on PyPI · Listed in the MCP Registry",
+    purpose: "Provide secure local access to MQTT state through a desktop observer and a read-only-by-default MCP server for people and AI agents, while keeping broker credentials on the user's machine and device control explicitly opt-in. TopicGate is distributed through PyPI and listed in the official MCP Registry.",
+    result: "Secure local MQTT access",
+    technologies: ["Python", "MQTT 5", "MCP", "SQLite", "PySide6", "Keyring"],
+    leftNodes: ["Broker profiles", "Topic filters", "Local persistence"],
+    rightNodes: ["Desktop observer", "Agent-ready MCP server", "Explicit control mode"],
+    evidence: [
+      "Published Python package",
+      "Official MCP Registry listing",
+      "Plugin for agents",
+      "Read-only safety boundary",
+    ],
+    screenshot: {
+      src: "/assets/projects/topicgate/desktop-app.png",
+      alt: "TopicGate desktop observer showing MQTT topics, payload details, and publishing controls",
+    },
+    repository: "https://github.com/Dumdart/TopicGate",
+  },
+  {
     id: "smart-home-bridge",
     name: "SmartHomeBridge",
-    purpose: "Connect LAN smart-home systems to devices through stable MQTT topics.",
-    result: "Connected devices",
-    technologies: ["Python", "MQTT", "Docker", "YOLO", "PySide6"],
-    leftNodes: ["Omlet door", "ESP32-CAM", "Python bridge"],
-    rightNodes: ["MQTT", "Loxone", "YOLO inference"],
+    status: "Stable LoxBerry plugin",
+    purpose: "Connect an Omlet Smart Automatic Chicken Coop Door to MQTT and Loxone through a local bridge that publishes stable, retained door state and accepts remote commands without exposing the vendor API to the home-automation controller.",
+    result: "Connected Omlet chicken door",
+    technologies: ["Python", "MQTT", "LoxBerry", "Loxone", "Docker", "Omlet API"],
+    leftNodes: ["Omlet chicken door", "Door telemetry", "Manual commands"],
+    rightNodes: ["Retained MQTT topics", "Loxone automation", "LoxBerry plugin"],
     evidence: [
-      "Docker runtimes",
-      "LoxBerry plugins",
-      "PySide6 diagnostics",
-      "Human-controlled model promotion",
+      "Published LoxBerry plugin",
+      "Stable retained MQTT contract",
+      "Manual door controls",
+      "Experimental camera integration",
     ],
+    screenshot: {
+      src: "/assets/projects/smarthomebridge/chicken_door_loxberry_plugin.png",
+      alt: "SmartHomeBridge chicken door LoxBerry plugin controls",
+    },
     repository: "https://github.com/Dumdart/SmartHomeBridge",
+    documentation: {
+      href: "https://wiki.loxberry.de/plugins/omlet_chicken_door_plugin/start",
+      label: "View published LoxBerry plugin",
+    },
   },
   {
     id: "clipstack",
@@ -68,6 +104,22 @@ export const projects: Project[] = [
       "EF Core data access",
       "Still used by the school association",
       "Diploma project · Sehr gut",
+    ],
+  },
+  {
+    id: "homelab",
+    name: "HomeLab Platform",
+    status: "Side project",
+    purpose: "Turn spare compute on my sister's PC into a small self-hosted platform while setting up her system, giving useful hardware a second role as the home for my containerized projects.",
+    result: "Repurposed project hosting",
+    technologies: ["Ubuntu", "Docker", "Docker Compose", "Caddy", "Nginx"],
+    leftNodes: ["Repurposed PC", "Containerized projects", "Local network"],
+    rightNodes: ["Caddy reverse proxy", "Self-hosted services", "Hands-on operations"],
+    evidence: [
+      "Repurposed spare compute",
+      "Containerized project hosting",
+      "Caddy reverse proxy",
+      "Hands-on service operations",
     ],
   },
   {

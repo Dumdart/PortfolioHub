@@ -38,7 +38,7 @@ const closeCredential = async () => {
         HTL Business Informatics graduate with hands-on work across full-stack
         development, cloud systems, SQL-backed products, automation, and practical AI.
       </p>
-      <img src="/assets/paul-thumfart.jpg" alt="Portrait of Paul Thumfart" />
+      <img src="/assets/black-cat-profile.jpg" alt="Paul Thumfart's black cat profile picture" />
 
       <SocialLinks :order="['email', 'linkedin', 'github']" />
     </section>
@@ -70,7 +70,7 @@ const closeCredential = async () => {
         <i aria-hidden="true"></i>
         <div>
           <h2>Outside software</h2>
-          <p>Cooking · Music association · Chess · Sport</p>
+          <p>Currently learning Chinese · Cooking · Music association · Chess · Sport</p>
         </div>
       </article>
     </section>

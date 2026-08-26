@@ -70,9 +70,17 @@ const nextProject = () => {
             </span>
             <h2>{{ selectedProject.name }}</h2>
             <p>{{ selectedProject.purpose }}</p>
-            <div v-if="selectedProject.repository" class="project-detail__repository">
-              <ActionLink :href="selectedProject.repository" :external="true">
+            <div v-if="selectedProject.repository || selectedProject.documentation" class="project-detail__repository">
+              <ActionLink v-if="selectedProject.repository" :href="selectedProject.repository" :external="true">
                 Open GitHub repository
+              </ActionLink>
+              <ActionLink
+                v-if="selectedProject.documentation"
+                :href="selectedProject.documentation.href"
+                :external="true"
+                variant="secondary"
+              >
+                {{ selectedProject.documentation.label }}
               </ActionLink>
             </div>
           </header>
