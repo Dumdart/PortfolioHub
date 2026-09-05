@@ -33,12 +33,10 @@ const closeCredential = async () => {
     <SignalBackdrop variant="about" />
 
     <section class="about-intro">
-      <h1>Grounded in practice,<br />still moving forward.</h1>
+      <h1>Backend-focused, practical by default.</h1>
       <p>
-        HTL Business Informatics graduate with hands-on work across full-stack
-        development, cloud systems, SQL-backed products, automation, and practical AI.
+          My focus is backend development around APIs, data and tools, with enough DevOps knowledge to take systems from code to deployment.
       </p>
-      <img src="/assets/black-cat-profile.jpg" alt="Paul Thumfart's black cat profile picture" />
 
       <SocialLinks :order="['email', 'linkedin', 'github']" />
     </section>
@@ -54,23 +52,28 @@ const closeCredential = async () => {
       <article>
         <i aria-hidden="true"></i>
         <div>
-          <h2>Diploma project</h2>
-          <p>NOVA · School Association Management System · Sehr gut</p>
+          <h2>Engineering focus</h2>
+          <p>
+              Backend development · APIs · Data · Developer tooling <br>
+                  C# / ASP.NET Core · Python · Go · PostgreSQL · Docker
+          </p>
         </div>
       </article>
       <article>
         <i aria-hidden="true"></i>
         <div>
-          <h2>Experience</h2>
-          <p>WKOÖ · Internship · 2024</p>
-          <p>Nordfels GmbH · Internship · 2024</p>
+          <h2>Selected experience</h2>
+          <p>TopicGate: Published Python/MQTT developer tool</p>
+          <p>NOVA: Production-used school association operations system · Diploma project</p>
+          <p>WKOÖ: Administrative internship · 2024</p>
+          <p>Nordfels GmbH: Manufacturing / technical planning internship · 2024</p>
         </div>
       </article>
       <article>
         <i aria-hidden="true"></i>
         <div>
           <h2>Outside software</h2>
-          <p>Currently learning Chinese · Cooking · Music association · Chess · Sport</p>
+          <p>Chinese · French horn / music association · strength training · cooking · chess</p>
         </div>
       </article>
     </section>

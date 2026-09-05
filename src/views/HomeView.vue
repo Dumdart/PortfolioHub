@@ -18,15 +18,15 @@ import SocialLinks from "../components/SocialLinks.vue";
 
         <div class="profile-identity">
           <h2>Paul<br />Thumfart</h2>
-          <p>Software Engineer ·<br />Automation &amp; Cloud</p>
+          <p>Backend Software Engineer<br />
+          APIs · Data · Developer Tools</p>
         </div>
       </section>
 
       <div class="home-copy">
-        <h1>Connected systems.<br />Clear decisions.<br />Useful software.</h1>
+        <h1>Backend software for APIs, data and developer tools.</h1>
         <p>
-          I turn real operational problems into dependable web, cloud, automation,
-          and machine-learning products.
+            C#, Python and Go across APIs, databases, automation and infrastructure.
         </p>
       </div>
 
@@ -39,7 +39,7 @@ import SocialLinks from "../components/SocialLinks.vue";
 
         <div class="qualification">
           <PhGraduationCap :size="24" weight="light" aria-hidden="true" />
-          <span>HTL Business Informatics · Graduated 2026 · Upper Austria</span>
+          <span>HTL Neufelden Business Informatics · Graduated 2026 · Upper Austria</span>
         </div>
 
         <svg class="mobile-signal-divider" viewBox="0 0 390 34" preserveAspectRatio="none" aria-hidden="true">

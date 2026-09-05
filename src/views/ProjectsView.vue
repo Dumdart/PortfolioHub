@@ -13,6 +13,27 @@ const selectedId = ref<ProjectId>("smart-home-bridge");
 const validProjectId = (value: unknown): value is ProjectId =>
   typeof value === "string" && projects.some((project) => project.id === value);
 
+const projectGroups = [
+  {
+    label: "Featured",
+    projects: ["topicgate", "nova", "clipstack"] as ProjectId[],
+  },
+  {
+    label: "Other systems",
+    projects: [
+      "smart-home-bridge",
+      "homelab",
+      "portfolio-hub",
+      "serverless-portfolio",
+    ] as ProjectId[],
+  },
+].map((group) => ({
+  ...group,
+  projects: group.projects
+    .map((projectId) => projects.find((project) => project.id === projectId))
+    .filter((project): project is (typeof projects)[number] => Boolean(project)),
+}));
+
 watch(
   () => route.query.project,
   (value) => {
@@ -42,21 +63,24 @@ const nextProject = () => {
       </div>
 
       <nav aria-label="Project selection">
-        <button
-          v-for="project in projects"
-          :key="project.id"
-          type="button"
-          :class="{ 'is-selected': project.id === selectedId }"
-          @click="
-            router.replace({
-              name: 'projects',
-              query: { project: project.id },
-            })
-          "
-        >
-          <i aria-hidden="true"></i>
-          <span>{{ project.name }}</span>
-        </button>
+        <section v-for="group in projectGroups" :key="group.label" class="project-rail__group">
+          <h2>{{ group.label }}</h2>
+          <button
+            v-for="project in group.projects"
+            :key="project.id"
+            type="button"
+            :class="{ 'is-selected': project.id === selectedId }"
+            @click="
+              router.replace({
+                name: 'projects',
+                query: { project: project.id },
+              })
+            "
+          >
+            <i aria-hidden="true"></i>
+            <span>{{ project.name }}</span>
+          </button>
+        </section>
       </nav>
     </aside>
 

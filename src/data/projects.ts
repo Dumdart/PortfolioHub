@@ -35,11 +35,32 @@ export const projects: Project[] = [
     id: "topicgate",
     name: "TopicGate",
     status: "Published on PyPI · Listed in the MCP Registry",
-    purpose: "Provide secure local access to MQTT state through a desktop observer and a read-only-by-default MCP server for people and AI agents, while keeping broker credentials on the user's machine and device control explicitly opt-in. TopicGate is distributed through PyPI and listed in the official MCP Registry.",
-    result: "Secure local MQTT access",
-    technologies: ["Python", "MQTT 5", "MCP", "SQLite", "PySide6", "Keyring"],
-    leftNodes: ["Broker profiles", "Topic filters", "Local persistence"],
-    rightNodes: ["Desktop observer", "Agent-ready MCP server", "Explicit control mode"],
+
+    purpose:
+      "Local MQTT developer tooling for people and AI agents. TopicGate keeps broker credentials and observed state on the user's machine, exposes inspection through a read-only-by-default MCP server, and makes device control explicitly opt-in.",
+
+    result: "Safe MQTT inspection for humans and agents",
+
+    technologies: [
+      "Python",
+      "MQTT 5",
+      "MCP",
+      "SQLite",
+      "PySide6",
+      "Keyring"
+    ],
+
+    leftNodes: [
+      "MQTT brokers",
+      "Topic filters",
+      "Observed messages"
+    ],
+
+    rightNodes: [
+      "Local state store",
+      "Desktop observer",
+      "Read-only MCP"
+    ],
     media: [
       {
         src: "/assets/projects/topicgate/desktop-app.png",
@@ -53,18 +74,117 @@ export const projects: Project[] = [
         title: "Plugin for agents",
         surface: "dark",
       },
+      {
+        src: "/assets/projects/topicgate/topicgate_architecture.png",
+        alt: "TopicGate architecture connecting MQTT brokers, local state, desktop observation, and MCP inspection",
+        title: "System architecture",
+        surface: "light",
+      },
     ],
-    repository: "https://github.com/Dumdart/TopicGate",
+  },
+  {
+    id: "nova",
+    name: "NOVA",
+
+    purpose:
+      "Production-used operations system for the HTL Neufelden school association, covering members, event planning, invitations, email workflows, billing, and exports. The backend was built for reliable day-to-day use beyond the diploma project.",
+
+    result: "Operational backend for a real organization",
+
+    technologies: [
+      "ASP.NET Core",
+      "EF Core",
+      "C#",
+      "MSSQL",
+      "Angular"
+    ],
+
+    leftNodes: [
+      "Members & events",
+      "Invitations & email",
+      "Billing & exports"
+    ],
+
+    rightNodes: [
+      "Authentication & roles",
+      "ASP.NET Core + EF Core",
+      "MSSQL"
+    ],
+    media: [
+      {
+        src: "/assets/projects/nova/nova_dashboard.png",
+        alt: "NOVA dashboard showing event-management functions for the HTL Neufelden school association",
+        title: "Operations dashboard",
+        surface: "light",
+      },
+      {
+        src: "/assets/projects/nova/nova_architecture.png",
+        alt: "NOVA application architecture diagram",
+        title: "Application architecture",
+        surface: "light",
+      },
+    ],
+  },
+  {
+    id: "clipstack",
+    name: "ClipStack",
+    status: "In development",
+
+    purpose:
+      "Booking platform for independent barbershops moving from paper calendars to low-friction customer booking and dependable staff workflows. The architecture is designed around explicit booking conflicts, minimal customer data, and offline-first mobile sync.",
+
+    result: "Conflict-aware booking platform",
+
+    technologies: [
+      ".NET",
+      "Azure Functions",
+      "PostgreSQL",
+      "Vue",
+      "Kotlin Multiplatform"
+    ],
+
+    leftNodes: [
+      "Customer booking",
+      "Manager operations",
+      "Offline staff app"
+    ],
+
+    rightNodes: [
+      "Versioned REST API",
+      "PostgreSQL",
+      "Idempotent sync"
+    ],
   },
   {
     id: "smart-home-bridge",
     name: "SmartHomeBridge",
-    status: "Stable LoxBerry plugin",
-    purpose: "Connect an Omlet Smart Automatic Chicken Coop Door to MQTT and Loxone through a local bridge that publishes stable, retained door state and accepts remote commands without exposing the vendor API to the home-automation controller.",
-    result: "Connected Omlet chicken door",
-    technologies: ["Python", "MQTT", "LoxBerry", "Loxone", "Docker", "Omlet API"],
-    leftNodes: ["Omlet chicken door", "Door telemetry", "Manual commands"],
-    rightNodes: ["Retained MQTT topics", "Loxone automation", "LoxBerry plugin"],
+    status: "Released as a LoxBerry plugin",
+
+    purpose:
+      "Integrate an Omlet smart coop door with MQTT and Loxone without coupling the automation controller to the vendor API. The bridge normalizes device telemetry, publishes retained state, and validates commands behind a stable local MQTT contract.",
+
+    result: "Stable MQTT contract for a vendor device",
+
+    technologies: [
+      "Python",
+      "MQTT",
+      "LoxBerry",
+      "Loxone",
+      "Docker",
+      "Omlet API"
+    ],
+
+    leftNodes: [
+      "Omlet API",
+      "Door telemetry",
+      "MQTT commands"
+    ],
+
+    rightNodes: [
+      "Retained MQTT state",
+      "Loxone automation",
+      "LoxBerry deployment"
+    ],
     media: [
       {
         src: "/assets/projects/smarthomebridge/chicken_camerar_loxberry_plugin.png",
@@ -79,71 +199,97 @@ export const projects: Project[] = [
         surface: "light",
       },
     ],
-    repository: "https://github.com/Dumdart/SmartHomeBridge",
-    documentation: {
-      href: "https://wiki.loxberry.de/plugins/omlet_chicken_door_plugin/start",
-      label: "View published LoxBerry plugin",
-    },
-  },
-  {
-    id: "clipstack",
-    name: "ClipStack",
-    status: "In development",
-    purpose: "Building dependable booking workflows to replace paper calendars for independent barbershops.",
-    result: "In development",
-    technologies: [".NET", "Vue", "Kotlin", "Azure", "PostgreSQL"],
-    leftNodes: ["Customer booking", "Manager web", "Staff mobile"],
-    rightNodes: ["Azure Functions", "PostgreSQL", "Notifications"],
-  },
-  {
-    id: "nova",
-    name: "NOVA",
-    purpose: "Backend-led event operations for the HTL Neufelden school association, still used from planning and invitations through billing.",
-    result: "Event operations",
-    technologies: ["ASP.NET Core", "EF Core", "C#", "MSSQL", "Angular"],
-    leftNodes: ["Event planning", "Invitations", "Billing"],
-    rightNodes: ["ASP.NET Core API", "EF Core", "MSSQL"],
-    media: [
-      {
-        src: "/assets/projects/nova/nova_dashboard.png",
-        alt: "NOVA dashboard showing event-management functions for the HTL Neufelden school association",
-        title: "Operations dashboard",
-        surface: "light",
-      },
-    ],
-    documentation: {
-      href: "/documents/diploma-thesis.pdf",
-      label: "View diploma thesis",
-    },
   },
   {
     id: "homelab",
     name: "HomeLab Platform",
     status: "Side project",
-    purpose: "Turn spare compute on my sister's PC into a small self-hosted platform while setting up her system, giving useful hardware a second role as the home for my containerized projects.",
-    result: "Repurposed project hosting",
-    technologies: ["Ubuntu", "Docker", "Docker Compose", "Caddy", "Nginx"],
-    leftNodes: ["Repurposed PC", "Containerized projects", "Local network"],
-    rightNodes: ["Caddy reverse proxy", "Self-hosted services", "Hands-on operations"],
+
+    purpose:
+      "Repurpose spare hardware into an Ubuntu-based container host for personal services and portfolio projects, with Docker Compose, reverse proxying, and hands-on ownership of deployment and operations.",
+
+    result: "Self-hosted container platform",
+
+    technologies: [
+      "Ubuntu",
+      "Docker",
+      "Docker Compose",
+      "Caddy",
+      "Nginx"
+    ],
+
+    leftNodes: [
+      "Repurposed hardware",
+      "Ubuntu host",
+      "Docker Compose"
+    ],
+
+    rightNodes: [
+      "Reverse proxy",
+      "Hosted services",
+      "Operational ownership"
+    ],
   },
   {
     id: "portfolio-hub",
     name: "PortfolioHub",
-    purpose: "Build and operate this portfolio as a containerized Vue application on an Ubuntu homelab behind Caddy.",
+
+    purpose:
+      "Build and operate this portfolio as a containerized Vue application on an Ubuntu homelab behind Caddy.",
+
     result: "Homelab delivery",
-    technologies: ["Vue 3", "TypeScript", "Vite", "Docker", "Nginx", "Caddy"],
-    leftNodes: ["Vue 3", "Vite build", "Docker image"],
-    rightNodes: ["Nginx runtime", "Caddy proxy", "Ubuntu homelab"],
+
+    technologies: [
+      "Vue 3",
+      "TypeScript",
+      "Vite",
+      "Docker",
+      "Nginx",
+      "Caddy"
+    ],
+
+    leftNodes: [
+      "Vue 3",
+      "Vite build",
+      "Docker image"
+    ],
+
+    rightNodes: [
+      "Nginx runtime",
+      "Caddy proxy",
+      "Ubuntu homelab"
+    ],
   },
   {
     id: "serverless-portfolio",
     name: "Serverless Portfolio Hub",
-    status: "Alternative hosting study",
-    purpose: "Explore a Vue and Azure Functions serverless deployment. It is a useful cloud reference, but not my preferred hosting platform: self-hosting at home is more convenient and gives me direct DevOps ownership.",
-    result: "Azure reference build",
-    technologies: ["Vue", "Azure Functions", "Cosmos DB", "Entra ID", "GitHub Actions", "App Insights"],
-    leftNodes: ["Vue frontend", "GitHub Actions", "Environment config"],
-    rightNodes: ["Azure Functions", "Cosmos DB", "App Insights"],
+    status: "Cloud architecture study",
+
+    purpose:
+      "Build a serverless Azure application to explore cloud deployment, identity, observability, and CI/CD in practice. Vue is hosted on Azure Static Web Apps and backed by .NET Azure Functions, Cosmos DB, Entra ID, and Application Insights.",
+
+    result: "Azure serverless reference architecture",
+
+    technologies: [
+      "Vue",
+      "Azure Static Web Apps",
+      "Azure Functions",
+      "Cosmos DB",
+      "Entra ID",
+      "Application Insights"
+    ],
+
+    leftNodes: [
+      "Vue frontend",
+      "GitHub Actions",
+      "Entra ID"
+    ],
+
+    rightNodes: [
+      "Azure Functions",
+      "Cosmos DB",
+      "Application Insights"
+    ],
     media: [
       {
         src: "/assets/projects/serverless-portfolio/architecture-diagram.png",
@@ -152,7 +298,6 @@ export const projects: Project[] = [
         surface: "dark",
       },
     ],
-    repository: "https://github.com/Dumdart/CCDEProject-SSPH",
   },
 ];
 
