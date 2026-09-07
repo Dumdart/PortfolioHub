@@ -54,75 +54,31 @@ const showSlide = (index: number) => {
 
 const handleKeydown = (event: KeyboardEvent) => {
   if (slides.value.length < 2) return;
-  if (event.key === "ArrowLeft") showSlide(activeIndex.value - 1);
-  if (event.key === "ArrowRight") showSlide(activeIndex.value + 1);
+  if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+    event.preventDefault();
+    showSlide(activeIndex.value + (event.key === "ArrowRight" ? 1 : -1));
+  }
 };
 </script>
 
 <template>
-  <section
-    class="project-showcase"
-    :aria-label="`${project.name} media showcase`"
-    tabindex="0"
-    @keydown="handleKeydown"
-  >
-    <div class="project-showcase__toolbar">
-      <div class="project-showcase__tabs" role="tablist" aria-label="Showcase pages">
-        <button
-          v-for="(slide, index) in slides"
-          :key="`${slide.kind}-${slide.title}`"
-          type="button"
-          role="tab"
-          :aria-selected="index === activeIndex"
-          :tabindex="index === activeIndex ? 0 : -1"
-          :class="{ 'is-active': index === activeIndex }"
-          @click="showSlide(index)"
-        >
-          {{ slide.title }}
-        </button>
-      </div>
-
-      <div v-if="slides.length > 1" class="project-showcase__controls">
-        <button type="button" aria-label="Previous slide" @click="showSlide(activeIndex - 1)">
-          <PhArrowLeft :size="20" weight="light" aria-hidden="true" />
-        </button>
-        <span aria-live="polite">
-          <strong>{{ String(activeIndex + 1).padStart(2, "0") }}</strong>
-          / {{ String(slides.length).padStart(2, "0") }}
-        </span>
-        <button type="button" aria-label="Next slide" @click="showSlide(activeIndex + 1)">
-          <PhArrowRight :size="20" weight="light" aria-hidden="true" />
-        </button>
+  <section class="case-gallery" :aria-label="`${project.name} media showcase`" tabindex="0" @keydown="handleKeydown">
+    <figure class="case-gallery__image" :class="`case-gallery__image--${activeSlide.surface}`">
+      <img :src="activeSlide.src" :alt="activeSlide.alt" :style="{ objectFit: activeSlide.fit }" @click="imageViewerOpen = true" />
+    </figure>
+    <div class="case-gallery__caption">
+      <span aria-live="polite">{{ activeSlide.title }}</span>
+      <button type="button" class="case-gallery__enlarge" @click="imageViewerOpen = true">
+        View larger <PhArrowsOutSimple :size="15" aria-hidden="true" />
+      </button>
+      <div v-if="slides.length > 1" class="case-gallery__controls">
+        <button type="button" aria-label="Previous image" @click="showSlide(activeIndex - 1)"><PhArrowLeft :size="17" aria-hidden="true" /></button>
+        <span>{{ activeIndex + 1 }} / {{ slides.length }}</span>
+        <button type="button" aria-label="Next image" @click="showSlide(activeIndex + 1)"><PhArrowRight :size="17" aria-hidden="true" /></button>
       </div>
     </div>
-
-    <div class="project-showcase__stage project-showcase__stage--image">
-      <Transition name="showcase" mode="out-in">
-        <figure
-          :key="`${project.id}-${activeIndex}`"
-          class="showcase-image"
-          :class="`showcase-image--${activeSlide.surface}`"
-        >
-          <img
-            :src="activeSlide.src"
-            :alt="activeSlide.alt"
-            :style="{ objectFit: activeSlide.fit }"
-            @click="imageViewerOpen = true"
-          />
-          <button type="button" class="showcase-image__open" @click="imageViewerOpen = true">
-            <PhArrowsOutSimple :size="18" aria-hidden="true" />
-            View larger
-          </button>
-        </figure>
-      </Transition>
-    </div>
-
     <Teleport to="body">
-      <ProjectImageViewer
-        :image="activeImage"
-        :open="imageViewerOpen"
-        @close="imageViewerOpen = false"
-      />
+      <ProjectImageViewer :image="activeImage" :open="imageViewerOpen" @close="imageViewerOpen = false" />
     </Teleport>
   </section>
 </template>

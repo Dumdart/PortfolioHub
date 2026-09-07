@@ -2,14 +2,10 @@
 import { Icon } from "@iconify/vue";
 import azureIcon from "@iconify-icons/logos/microsoft-azure";
 import csharpIcon from "@iconify-icons/logos/c-sharp";
-import javaIcon from "@iconify-icons/logos/java";
 import dockerIcon from "@iconify-icons/logos/docker-icon";
 import dotnetIcon from "@iconify-icons/logos/dotnet";
 import postgresqlIcon from "@iconify-icons/logos/postgresql";
 import pythonIcon from "@iconify-icons/logos/python";
-import sqliteIcon from "@iconify-icons/simple-icons/sqlite";
-import typescriptIcon from "@iconify-icons/logos/typescript-icon";
-import vueIcon from "@iconify-icons/logos/vue";
 import sqlServerIcon from "@iconify-icons/simple-icons/microsoftsqlserver";
 
 type Technology = {
@@ -22,31 +18,28 @@ type Technology = {
 
 const techs: { name: string; technologies: Technology[] }[] = [
   {
-    name: "Code & Frameworks",
+    name: "Backend & Data",
     technologies: [
       { name: "C#", icon: csharpIcon, className: "csharp" },
+      { name: "ASP.NET Core", icon: dotnetIcon, className: "dotnet" },
+      { name: "PostgreSQL", icon: postgresqlIcon, className: "postgres" },
       { name: "Python", icon: pythonIcon, className: "python" },
-      { name: "Java", icon: javaIcon, className: "java" },
-      { name: "TypeScript", icon: typescriptIcon, className: "typescript" },
-      { name: "Vue", icon: vueIcon, className: "vue" },
+      { name: "SQL Server", icon: sqlServerIcon, className: "sql" },
     ],
   },
   {
-    name: "Platforms & Data",
+    name: "Infrastructure & Integration",
     technologies: [
-      { name: "Azure", icon: azureIcon, className: "azure" },
       { name: "Docker", icon: dockerIcon, className: "docker" },
-      { name: ".NET", icon: dotnetIcon, className: "dotnet" },
-      { name: "PostgreSQL", icon: postgresqlIcon, className: "postgres" },
-      { name: "Microsoft SQL Server", icon: sqlServerIcon, className: "sql" },
-      { name: "SQLite", icon: sqliteIcon, className: "sqlite" },
+      { name: "REST APIs", mark: "{ }", className: "rest" },
+      { name: "Azure", icon: azureIcon, className: "azure" },
     ],
   },
 ];
 </script>
 
 <template>
-    <section class="skills-panel" aria-labelledby="skills-heading">
+    <section class="skills-panel" aria-label="Technical focus">
         <div v-for="tech in techs" :key="tech.name" class="skills-panel__group">
             <h2 class="skills-panel__group-title">
                 {{ tech.name }}

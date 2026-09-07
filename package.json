@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "test": "node --test tests/*.test.mjs",
     "dev": "vite",
     "typecheck": "vue-tsc --noEmit",
     "build": "vite build",
@@ -17,6 +18,7 @@
     "@iconify-icons/simple-icons": "^2.0.0",
     "@iconify/vue": "^5.0.1",
     "@phosphor-icons/vue": "^2.2.1",
+    "mermaid": "^11.17.2",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   },
