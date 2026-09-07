@@ -26,13 +26,14 @@ import SocialLinks from "../components/SocialLinks.vue";
       <div class="home-copy">
         <h1>Backend software for APIs, data and developer tools.</h1>
         <p>
-            C#, Python and Go across APIs, databases, automation and infrastructure.
+          I build with C#/.NET, Python and SQL—from a school association's operations system
+          to published MQTT tooling, with hands-on deployment experience.
         </p>
       </div>
 
       <div class="home-utility">
         <div class="home-actions">
-          <ActionLink to="/projects">Open project map</ActionLink>
+          <ActionLink to="/projects">Explore engineering projects</ActionLink>
         </div>
 
         <SocialLinks label="Contact and social links" />

@@ -5,19 +5,19 @@ const roadmap = [
   {
     number: "01",
     stage: "Next step",
-    title: "Start in software or cloud engineering",
+    title: "Start in backend software development",
     date: "2026–2027",
   },
   {
     number: "02",
     stage: "Build depth",
     title: "Study Software Engineering part-time",
-    date: "From September 2027",
+    date: "Planned for September 2027",
   },
   {
     number: "03",
     stage: "Always",
-    title: "Continue building and learning",
+    title: "Deepen API, data, and systems engineering",
     date: "Ongoing",
   },
 ];

@@ -647,6 +647,106 @@ a {
   margin-top: 18px;
 }
 
+.project-contribution,
+.project-architecture,
+.project-decisions,
+.project-outcome {
+  margin-top: 32px;
+}
+
+.project-contribution {
+  border-left: 3px solid var(--cyan-dark);
+  padding-left: 18px;
+}
+
+.project-contribution h3,
+.project-section-heading h3,
+.project-decisions > h3,
+.project-outcome h3 {
+  margin: 0 0 10px;
+  font-size: 17px;
+}
+
+.project-contribution p,
+.project-architecture p,
+.project-decisions p,
+.project-outcome p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+.project-architecture {
+  padding: 24px;
+  border: 1px solid var(--line);
+  background: rgba(239, 252, 255, 0.6);
+  border-radius: 12px;
+}
+
+.project-section-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.project-section-heading > span,
+.project-decisions article > span {
+  color: var(--cyan-dark);
+  font-family: var(--mono);
+  font-size: 11px;
+}
+
+.project-architecture__diagram {
+  overflow-x: auto;
+  margin-block: 20px;
+}
+
+.project-architecture__diagram svg {
+  display: block;
+  width: 100%;
+  min-width: 580px;
+  height: auto;
+  margin-inline: auto;
+}
+
+.project-architecture summary {
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--cyan-dark);
+}
+
+.project-architecture pre {
+  overflow-x: auto;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.project-decisions__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+  gap: 24px;
+}
+
+.project-decisions article {
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.project-decisions h4 {
+  margin: 10px 0;
+  font-size: 15px;
+}
+
+.project-outcome {
+  padding: 24px;
+  background: var(--cyan-pale);
+  border-radius: 12px;
+  margin-bottom: 40px;
+}
+
 .project-rail__group + .project-rail__group {
   margin-top: 30px;
 }
@@ -2097,6 +2197,8 @@ body.dialog-open {
 .project-rail {
   min-height: max(900px, 100vh);
   padding: 112px 58px 48px;
+  align-self: start;
+  justify-content: flex-start;
 }
 
 .project-rail h1 {
@@ -3461,7 +3563,7 @@ body.dialog-open {
 .home-copy {
   top: 210px;
   left: clamp(290px, 21vw, 330px);
-  width: min(480px, 33vw);
+  width: min(440px, 30vw);
 }
 
 .home-copy h1 {
@@ -3549,6 +3651,7 @@ body.dialog-open {
   }
 
   .home-profile .portrait-anchor {
+    inset: auto;
     width: 116px;
     height: 116px;
   }
@@ -3595,7 +3698,7 @@ body.dialog-open {
   .home-utility .mobile-signal-divider {
     position: absolute;
     right: -24px;
-    bottom: -111px;
+    bottom: -61px;
     left: -24px;
     z-index: 3;
     display: block;
@@ -3606,6 +3709,9 @@ body.dialog-open {
 
   .home-skills-wrap {
     display: block;
+    inset: auto;
+    width: calc(100% + 48px);
+    margin: 60px -24px 0;
   }
 }
 

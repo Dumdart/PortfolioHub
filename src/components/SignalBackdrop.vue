@@ -6,6 +6,7 @@ export type SignalVariant = "home" | "projects" | "goals" | "about";
 
 const props = defineProps<{
   variant: SignalVariant;
+  viewBox?: string;
 }>();
 
 const root = ref<HTMLDivElement | null>(null);
@@ -225,7 +226,7 @@ onBeforeUnmount(() => {
     <canvas ref="canvas" class="signal-backdrop__canvas"></canvas>
     <svg
       class="signal-backdrop__mask"
-      viewBox="0 0 1440 1024"
+      :viewBox="viewBox ?? '0 0 1440 1024'"
       preserveAspectRatio="none"
     >
       <defs>
