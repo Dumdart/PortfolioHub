@@ -55,7 +55,6 @@ onBeforeUnmount(() => window.removeEventListener("keydown", handleKeydown));
 
     <nav id="primary-navigation" class="primary-nav" :class="{ 'primary-nav--open': menuOpen }">
       <RouterLink to="/projects" @click="closeMenu()">Projects</RouterLink>
-      <RouterLink to="/goals" @click="closeMenu()">Goals &amp; Plans</RouterLink>
       <RouterLink to="/about" @click="closeMenu()">About</RouterLink>
     </nav>
   </header>

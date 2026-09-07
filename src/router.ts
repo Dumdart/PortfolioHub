@@ -9,7 +9,6 @@ export const router = createRouter({
   routes: [
     { path: "/", name: "home", component: HomeView },
     { path: "/projects", name: "projects", component: ProjectsView },
-    { path: "/goals", name: "goals", component: GoalsView },
     { path: "/about", name: "about", component: AboutView },
   ],
   scrollBehavior: () => ({ top: 0 }),
