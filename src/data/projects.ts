@@ -338,21 +338,22 @@ export const projects: Project[] = [
   },
   {
     id: "serverless-portfolio",
-    summary: "Exploring identity, APIs, and observability on Azure.",
-    roleSummary: "Cloud architecture & automated deployment",
-    contribution: "Built an Azure application to explore serverless APIs, persistence, identity, telemetry, and automated deployment.",
+    summary: "A serverless Azure portfolio with analytics and Gemini-powered analysis.",
+    roleSummary: "Cloud architecture, AI integration & automated deployment",
+    contribution: "Built and extended an Azure application with serverless APIs, persistence, identity, telemetry, file workflows, and a Gemini-powered assistant routed through the backend.",
     decisions: [
       { title: "Learn the cloud service boundaries", reason: "Static Web Apps, Functions, Cosmos DB, and Entra ID provided practical experience connecting hosting, compute, data, and identity." },
+      { title: "Keep Gemini behind the API boundary", reason: "The Vue client sends chat, portfolio statistics, and uploaded document text to an Azure Function; only the backend reads the Gemini API key and calls Gemini." },
       { title: "Reassess the operational cost", reason: "The Azure architecture was useful for learning, but the requirements of this portfolio fit a simpler self-hosted deployment." },
     ],
-    lesson: "A cloud architecture study covering CI/CD and observability, followed by a deliberate move to simpler hosting for this portfolio.",
+    lesson: "A cloud architecture study covering CI/CD, observability, and a secure backend boundary for third-party AI, followed by a deliberate move to simpler hosting for this portfolio.",
     name: "Serverless Portfolio Hub",
     status: "Cloud architecture study",
 
     purpose:
-      "Build a serverless Azure application to explore cloud deployment, identity, observability, and CI/CD in practice. Vue is hosted on Azure Static Web Apps and backed by .NET Azure Functions, Cosmos DB, Entra ID, and Application Insights.",
+      "Build a serverless Azure application to explore cloud deployment, identity, observability, and CI/CD in practice. After meeting the original assignment requirements, I extended it with file workflows and a lightweight Gemini-powered assistant that could discuss portfolio statistics and analyze uploaded document text. The Vue client routes AI requests through .NET Azure Functions, keeping the Gemini API key in backend environment configuration.",
 
-    result: "Azure serverless reference architecture",
+    result: "Serverless portfolio with AI-assisted analysis",
 
     technologies: [
       "Vue",
@@ -360,7 +361,8 @@ export const projects: Project[] = [
       "Azure Functions",
       "Cosmos DB",
       "Entra ID",
-      "Application Insights"
+      "Application Insights",
+      "Gemini API"
     ],
 
     leftNodes: [
@@ -372,7 +374,7 @@ export const projects: Project[] = [
     rightNodes: [
       "Azure Functions",
       "Cosmos DB",
-      "Application Insights"
+      "Gemini via backend"
     ],
     media: [
       {
