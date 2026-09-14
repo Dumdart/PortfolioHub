@@ -1,0 +1,7 @@
+interface:
+  display_name: "Manage Portfolio Projects"
+  short_description: "Maintain PortfolioHub project data safely"
+  default_prompt: "Use $manage-portfolio-projects to add, update, or thoughtfully remove a PortfolioHub project."
+
+policy:
+  allow_implicit_invocation: true

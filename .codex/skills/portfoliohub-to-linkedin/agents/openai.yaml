@@ -1,0 +1,7 @@
+interface:
+  display_name: "PortfolioHub to LinkedIn"
+  short_description: "Align LinkedIn with verified portfolio facts"
+  default_prompt: "Use $portfoliohub-to-linkedin to compare my pasted LinkedIn profile with PortfolioHub and draft a reviewable change set."
+
+policy:
+  allow_implicit_invocation: true
