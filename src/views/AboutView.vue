@@ -1,34 +1,9 @@
 <script setup lang="ts">
-import { nextTick, ref } from "vue";
-import {
-  PhDownloadSimple,
-  PhLockKey,
-  PhArrowRight,
-} from "@phosphor-icons/vue";
-import CredentialViewer from "../components/CredentialViewer.vue";
+import { PhArrowRight } from "@phosphor-icons/vue";
 import SignalBackdrop from "../components/SignalBackdrop.vue";
 import SocialLinks from "../components/SocialLinks.vue";
 import { projects } from "../data/projects";
-import {
-  credentials,
-  supportingDocuments,
-  type Credential,
-} from "../data/credentials";
-
-const activeCredential = ref<Credential | null>(null);
 const selectedWork = projects.filter(project => ['topicgate', 'nova'].includes(project.id));
-const credentialTrigger = ref<HTMLElement | null>(null);
-
-const openCredential = (event: MouseEvent, credential: Credential) => {
-  credentialTrigger.value = event.currentTarget as HTMLElement;
-  activeCredential.value = credential;
-};
-
-const closeCredential = async () => {
-  activeCredential.value = null;
-  await nextTick();
-  credentialTrigger.value?.focus();
-};
 </script>
 
 <template>
@@ -48,6 +23,9 @@ const closeCredential = async () => {
       <section class="about-education">
         <div class="about-section-title"><h2>HTL Neufelden</h2><span>2026</span></div>
         <p>Business Informatics · Matura &amp; Diploma</p>
+        <RouterLink class="about-certificates-link" to="/certificates">
+          View certificates <PhArrowRight :size="16" aria-hidden="true" />
+        </RouterLink>
       </section>
 
       <section class="about-work">
@@ -82,46 +60,13 @@ const closeCredential = async () => {
         <p><strong>Nordfels GmbH · 2024</strong>Manufacturing plans &amp; mechatronics</p>
       </section>
     </section>
-    <aside class="credentials">
-      <h2>Credentials</h2>
-      <button
-        v-for="credential in credentials"
-        :key="credential.title"
-        class="credential-card"
-        type="button"
-        @click="openCredential($event, credential)"
-      >
-        <span>{{ credential.title }}</span>
-        <img :src="credential.pages[0].src" :alt="credential.pages[0].alt" />
-      </button>
-      <p><PhLockKey :size="20" aria-hidden="true" />Public previews redact personal identifiers.</p>
-
-      <section class="credential-downloads" aria-labelledby="credential-downloads-title">
-        <h3 id="credential-downloads-title">Supporting documents</h3>
-        <a
-          v-for="document in supportingDocuments"
-          :key="document.href"
-          :href="document.href"
-          :download="document.filename"
-        >
-          <span>
-            <strong>{{ document.title }}</strong>
-            <small>{{ document.detail }}</small>
-          </span>
-          <PhDownloadSimple :size="22" aria-hidden="true" />
-        </a>
-      </section>
-    </aside>
-
-    <CredentialViewer
-      :credential="activeCredential"
-      :open="activeCredential !== null"
-      @close="closeCredential"
-    />
   </main>
 </template>
 
 <style scoped>
+.about-page--concise { grid-template-columns: 37% minmax(0, 1fr); }
+.about-certificates-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; color: var(--cyan-dark); font-size: 13px; }
+.about-certificates-link:hover { text-decoration: underline; text-underline-offset: 4px; }
 .about-overview {
   position: relative;
   z-index: 1;

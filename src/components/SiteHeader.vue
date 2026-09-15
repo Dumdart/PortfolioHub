@@ -6,7 +6,7 @@ const route = useRoute();
 const menuOpen = ref(false);
 const menuButton = ref<HTMLButtonElement | null>(null);
 
-const routeClass = computed(() => `header--${String(route.name ?? "home")}`);
+const routeClass = computed(() => `header--${String(route.meta.headerVariant ?? route.name ?? "home")}`);
 
 watch(
   () => route.fullPath,
@@ -54,8 +54,9 @@ onBeforeUnmount(() => window.removeEventListener("keydown", handleKeydown));
     </button>
 
     <nav id="primary-navigation" class="primary-nav" :class="{ 'primary-nav--open': menuOpen }">
-      <RouterLink to="/projects" @click="closeMenu()">Projects</RouterLink>
       <RouterLink to="/about" @click="closeMenu()">About</RouterLink>
+      <RouterLink to="/certificates" @click="closeMenu()">Certificates</RouterLink>
+      <RouterLink to="/projects" @click="closeMenu()">Projects</RouterLink>
     </nav>
   </header>
 </template>

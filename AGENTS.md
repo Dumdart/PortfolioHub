@@ -52,6 +52,10 @@ PortfolioHub is public; the job-materials workspace is private.
 
 ## PortfolioHub workflow
 
+- Read and follow [PortfolioHub design policies and QA](design-qa.md) before
+  planning, implementing, or reviewing visual changes. It defines the shared
+  inner-page design, the intentional landing-page exception, and visual
+  acceptance checks.
 - Preserve the existing Vue 3, Vue Router, TypeScript, and Vite architecture.
 - Keep reusable content in the established data modules and components rather
   than duplicating facts across views.

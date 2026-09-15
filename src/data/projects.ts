@@ -178,36 +178,33 @@ export const projects: Project[] = [
   },
   {
     id: "clipstack",
-    summary: "Booking workflows designed for conflicts, retries, and offline use.",
-    roleSummary: "Backend architecture & synchronization design",
-    contribution: "Designing the backend and synchronization model for customer booking, a manager web interface, and an offline-capable staff app. The project is still in development.",
+    summary: "A completed booking prototype awaiting a barbershop's decision.",
+    roleSummary: "Prototype lead, backend architecture & teammate onboarding",
+    contribution: "Started ClipStack, built most of the prototype, and later onboarded a teammate who joined the project. My work focused on the backend architecture, booking workflows, and synchronization model across the customer, manager, and staff experiences.",
     decisions: [
       { title: "Make booking conflicts explicit", reason: "The design uses optimistic concurrency and conflict responses so competing edits can be resolved rather than silently overwriting a booking." },
       { title: "Plan for repeated requests", reason: "Idempotent requests are part of the sync design: retrying after an interrupted connection should not create duplicate operations." },
-      { title: "Keep customer data focused", reason: "The booking model aims to collect only the information needed for the appointment and staff workflow." },
+      { title: "Move from Azure Functions to ASP.NET Core", reason: "The prototype began with Azure Functions, but a conventional ASP.NET Core backend made the growing system easier to understand, extend, and scale as more features were considered." },
     ],
-    lesson: "Architecture in development, not a claim of a finished production system. The key design challenge is preserving booking correctness when clients disconnect, retry, or edit the same record.",
+    lesson: "The prototype is complete and further work depends on the barbershop's approval. The hardest part was choosing an architecture that could stay understandable while supporting the many features a full product would need; that led to replacing Azure Functions with ASP.NET Core.",
     architecture: {
-      planned: true,
-      description: "Planned architecture: customer and manager Vue clients and a Kotlin Multiplatform staff app access a .NET Azure Functions REST API backed by PostgreSQL. Mobile synchronization is designed around retries and conflict handling.",
+      description: "Customer and manager Vue clients and a Kotlin Multiplatform staff app access an ASP.NET Core REST API backed by PostgreSQL. Mobile synchronization handles retries and booking conflicts explicitly.",
       source: `flowchart LR
-        web[Customer and manager web] --> api[.NET REST API]
+        web[Customer and manager web] --> api[ASP.NET Core REST API]
         mobile[Kotlin staff app] <-->|offline sync| api
         api --> rules[Conflict and retry handling]
-        rules --> db[(PostgreSQL)]
-        hosting[Azure Functions] -. hosts .-> api`,
+        rules --> db[(PostgreSQL)]`,
     },
     name: "ClipStack",
-    status: "In development",
+    status: "Prototype complete · Awaiting barbershop approval",
 
     purpose:
-      "Booking platform for independent barbershops moving from paper calendars to low-friction customer booking and dependable staff workflows. The architecture is designed around explicit booking conflicts, minimal customer data, and offline-first mobile sync.",
+      "Booking prototype for an independent barbershop moving from paper calendars to low-friction customer booking and dependable staff workflows. The completed prototype covers customer and manager web experiences plus an offline-capable staff app, with explicit booking conflicts and retry-aware synchronization.",
 
-    result: "Conflict-aware booking platform",
+    result: "Completed prototype ready for stakeholder review",
 
     technologies: [
-      ".NET",
-      "Azure Functions",
+      "ASP.NET Core",
       "PostgreSQL",
       "Vue",
       "Kotlin Multiplatform"
@@ -223,6 +220,15 @@ export const projects: Project[] = [
       "Versioned REST API",
       "PostgreSQL",
       "Idempotent sync"
+    ],
+    media: [
+      {
+        src: "/assets/projects/clipstack/mobile-dashboard.png",
+        alt: "ClipStack mobile prototype dashboard showing synchronized appointments and staff navigation",
+        title: "Mobile staff dashboard",
+        fit: "contain",
+        surface: "light",
+      },
     ],
   },
   {

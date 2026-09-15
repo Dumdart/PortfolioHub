@@ -15,6 +15,7 @@
   --line-dark: rgba(255, 255, 255, 0.22);
   --mono: "JetBrains Mono Variable", "Cascadia Code", Consolas, monospace;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --site-header-height: 100px;
 }
 
 * {
@@ -69,7 +70,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 104px;
+  height: var(--site-header-height);
   padding: 0 58px;
 }
 
@@ -115,7 +116,8 @@ a {
 
 .header--home .wordmark,
 .header--projects .wordmark,
-.header--about .wordmark {
+.header--about .wordmark,
+.header--certificates .wordmark {
   color: var(--paper);
 }
 
@@ -1373,9 +1375,13 @@ a {
 }
 
 @media (max-width: 860px) {
+  :root {
+    --site-header-height: 76px;
+  }
+
   .site-header {
     position: fixed;
-    height: 78px;
+    height: var(--site-header-height);
     padding-inline: 22px;
     background: rgba(7, 16, 21, 0.96);
     color: var(--paper);
@@ -1876,7 +1882,6 @@ body.dialog-open {
 }
 
 .site-header {
-  height: 100px;
   padding-inline: 58px;
 }
 
@@ -2774,7 +2779,6 @@ body.dialog-open {
 @media (max-width: 860px) {
   .site-header {
     position: fixed;
-    height: 76px;
     padding-inline: 22px;
     background: rgba(7, 16, 21, 0.94);
     color: var(--paper);

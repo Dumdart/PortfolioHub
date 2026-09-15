@@ -31,16 +31,20 @@ test("all project media and local supporting links exist", async () => {
   }
 });
 
-test("in-development architecture is explicitly marked as planned", () => {
+test("ClipStack distinguishes the completed private prototype from future development", () => {
   const clipstack = projects.find(project => project.id === "clipstack");
-  assert.equal(clipstack.status, "In development");
-  assert.equal(clipstack.architecture.planned, true);
+  assert.equal(clipstack.status, "Prototype complete · Awaiting barbershop approval");
+  assert.equal(clipstack.architecture.planned, undefined);
+  assert.ok(clipstack.technologies.includes("ASP.NET Core"));
+  assert.ok(!clipstack.technologies.includes("Azure Functions"));
+  assert.match(clipstack.contribution, /built most of the prototype.*onboarded a teammate/);
+  assert.equal(clipstack.repository, undefined);
   assert.equal(projects.find(project => project.id === "smart-home-bridge").media[0].title, "Door control");
 });
 
 test("visual tabs expose actual product images and architecture without empty panels", () => {
   for (const project of projects) {
-    const expected = ["topicgate", "nova", "smart-home-bridge"].includes(project.id)
+    const expected = ["topicgate", "nova", "clipstack", "smart-home-bridge"].includes(project.id)
       ? ["product", "architecture"]
       : ["architecture"];
     assert.deepEqual(projectViews(project), expected, project.id);

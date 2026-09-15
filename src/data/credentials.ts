@@ -1,3 +1,35 @@
+import openaiIcon from "@iconify-icons/simple-icons/openai";
+import claudeIcon from "@iconify-icons/simple-icons/claude";
+import type { IconifyIcon } from "@iconify/vue";
+
+export interface CourseBadge {
+  id: string;
+  title: string;
+  issuer: string;
+  visual: { icon: IconifyIcon } | { src: string; alt: string };
+  issuedMonth?: string;
+  expiryMonth?: string;
+  credentialId?: string;
+  proofUrl: string;
+}
+
+export const courseBadges: CourseBadge[] = [
+  {
+    id: "codex-pathway-completion",
+    title: "Build with AI - Codex Pathway Completion",
+    issuer: "OpenAI Academy",
+    visual: { icon: openaiIcon },
+    proofUrl: "https://oaiacademy.credential.net/40b752c9-db77-4b1f-bfc1-fd9954b7af9c?key=7a8fc6fbe6688b662cc5be9caa3503433e88aa81f87d2d4bc537b9dc05b0d291#acc.YSv6TGEq",
+  },
+  {
+    id: "claude-code-101",
+    title: "Claude Code 101",
+    issuer: "Anthropic Academy",
+    visual: { icon: claudeIcon },
+    proofUrl: "https://academy.claude.com/badges/55e1be07-2ff9-4f76-85f7-26b71d5a6a43",
+  },
+];
+
 export interface CredentialPage {
   src: string;
   alt: string;
@@ -5,6 +37,7 @@ export interface CredentialPage {
 }
 
 export interface Credential {
+  id: string;
   title: string;
   pages: CredentialPage[];
 }
@@ -18,6 +51,7 @@ export interface SupportingDocument {
 
 export const credentials: Credential[] = [
   {
+    id: "matura-diploma",
     title: "Matura & Diploma",
     pages: [
       {
@@ -38,6 +72,7 @@ export const credentials: Credential[] = [
     ],
   },
   {
+    id: "school-report-2025-26",
     title: "School report 2025/26",
     pages: [
       {
@@ -49,13 +84,19 @@ export const credentials: Credential[] = [
   },
 ];
 
-export const supportingDocuments: SupportingDocument[] = [
-  {
-    title: "Diploma thesis",
-    detail: "English · PDF · 196 pages",
-    href: "/documents/diploma-thesis.pdf",
-    filename: "Paul-Thumfart-Diploma-Thesis.pdf",
+export const diplomaThesis: SupportingDocument & { preview: CredentialPage } = {
+  title: "Diploma thesis",
+  detail: "English · PDF · 196 pages",
+  href: "/documents/diploma-thesis.pdf",
+  filename: "Paul-Thumfart-Diploma-Thesis.pdf",
+  preview: {
+    src: "/assets/diploma-thesis-first-page.png",
+    alt: "Title area of the diploma thesis first page: School Association Management System",
+    label: "Thesis title page",
   },
+};
+
+export const supportingDocuments: SupportingDocument[] = [
   {
     title: "Certificate supplement",
     detail: "English · PDF · 2 pages",

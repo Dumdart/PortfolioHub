@@ -9,20 +9,15 @@ Maintain an honest, evidence-backed public account of Paul's projects while pres
 
 ## Start with the repository
 
-Read the repository `AGENTS.md`, then inspect the current versions of:
+Read the applicable `AGENTS.md` files, `src/data/projects.ts`, and `tests/projects.test.mjs`. Read [references/project-contract.md](references/project-contract.md) for field meanings, navigation dependencies, public-content boundaries, and proportional validation.
 
-- `src/data/projects.ts`
-- `src/views/ProjectsView.vue`
-- `src/router.ts`
-- `tests/projects.test.mjs`
+Identify whether the request is an addition, update, or removal. Keep the change centered on `projects.ts`. Search for the affected project ID and changed fields. Inspect `ProjectsView.vue`, `router.ts`, other consumers, or assets only when the ID, order, route/query behavior, rendered structure, or media changes.
 
-Inspect affected consumers, assets, and tests rather than assuming this skill's snapshot is current. Read [references/project-contract.md](references/project-contract.md) for the field meanings, navigation dependencies, and public-content boundaries.
-
-Identify whether the request is an addition, update, or removal. Keep the change centered on `projects.ts`; modify routes, views, assets, and tests only where the project change requires it.
+Preserve unrelated work in a dirty worktree. Do not inspect other tasks, repositories, private workspaces, or the web by default. Use them only when the user points to them, the current repository contains a relevant contradiction, or a consequential public claim cannot otherwise be phrased honestly.
 
 ## Interview for the project story
 
-Before adding or substantially rewriting a project, ask a small, conversational batch of targeted questions. Ask only for missing or ambiguous information; projects vary, and the user does not need to fill every field as a form.
+If the request names a project but does not say what changed, read its current entry and immediately ask one compact, conversational batch of questions. Do this before broad evidence gathering. Ask only for missing or ambiguous information; projects vary, and the user does not need to fill every field as a form.
 
 Cover the parts that matter for this project:
 
@@ -35,7 +30,11 @@ Cover the parts that matter for this project:
 
 Always invite at least one honest reflection for a new project or substantial narrative update. Incorporate it in a natural, concise way without manufacturing vulnerability, polishing away uncertainty, or turning aspirations into completed work. If the user already supplied a point clearly, do not ask for it again.
 
-Use repository evidence and, when shared career facts are involved, relevant private job-material evidence to verify claims. Never expose private paths, application details, personal identifiers, or unapproved private artifacts in this public repository. Report unresolved discrepancies and ask before changing the public claim.
+Treat Paul's account as the primary source for his own contribution, current private-project status, and reflections. Use repository evidence for implementation details and public links. Verify high-impact claims such as adoption, publication, scale, security, reliability, or business results; otherwise prefer careful wording over an open-ended search.
+
+After the user answers, proceed without another interview unless a material contradiction, missing editorial choice, destructive action, or publication decision remains. Batch any remaining blockers into one follow-up.
+
+Never expose private paths, application details, personal identifiers, or unapproved private artifacts in this public repository. A file attachment alone is not approval to publish it. If the user has not clearly asked to add the exact asset—or it visibly contains names, contact details, or other identifiers—include one explicit public-use confirmation in the question batch before copying it under `public/`.
 
 ## Apply the chosen operation
 
@@ -50,7 +49,7 @@ Use repository evidence and, when shared career facts are involved, relevant pri
 ### Update
 
 - Locate the project by ID and preserve correct existing facts that are outside the request.
-- Ask what prompted the update and which parts of Paul's current thinking should be reflected.
+- If the requested change is unclear, use the compact interview before searching elsewhere. If the user already supplied the facts and reflection, edit without asking them again.
 - Reconcile changes across repeated references, project-specific tests, routes/query behavior, and assets where applicable.
 - Keep claims proportional to evidence and preserve distinctions between personal contribution, team output, current behavior, and plans.
 
@@ -69,13 +68,18 @@ After confirmation:
 
 ## Verify
 
-Run the focused project tests while iterating, then the repository's applicable checks:
+Scale validation to the actual change and do not rerun a passing check without a relevant edit. For ordinary `projects.ts` data or copy changes, use this sequence:
 
 ```powershell
-npm test
+node --test tests/projects.test.mjs
 npm run typecheck
 npm run build
+npm test
 git diff --check
 ```
 
-Visually verify `/projects` when project ordering, navigation, media, architecture, or rendered copy changes. Review `git status` and the final diff. Do not stage, commit, push, publish, or deploy unless explicitly requested.
+Visually inspect a newly added or replaced asset itself. Smoke-check the affected `/projects?project=<id>` page when media, architecture, order, route/query behavior, component structure, or responsive presentation changes. A copy/status/technology-only edit that leaves the rendering contract intact does not require a separate browser-automation workflow.
+
+Use existing browser tooling when a rendered check is material. Do not download tools, invoke a broad frontend-debugging workflow, or build an exhaustive desktop/mobile interaction matrix solely because project data is rendered. If suitable browser tooling is unavailable, do not repeatedly retry optional fallbacks; report the visual-check limitation unless the change itself affects layout or interaction and cannot be responsibly completed without it.
+
+Review `git status` and the complete scoped diff. Do not delete shared QA directories or clean broad paths to remove temporary artifacts. Do not stage, commit, push, publish, or deploy unless explicitly requested.

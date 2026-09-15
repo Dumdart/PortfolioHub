@@ -23,11 +23,10 @@ function selectProject(id: ProjectId) {
 
 <template>
   <main class="case-page">
-    <div class="case-field" aria-hidden="true">
-      <SignalBackdrop variant="projects" viewBox="0 0 500 1024" />
-    </div>
+    <SignalBackdrop variant="about" />
     <aside class="case-rail">
-      <h2>Projects</h2>
+      <h1>Projects</h1>
+      <p class="case-intro">Explore the projects, their architecture, and the decisions behind them.</p>
       <nav aria-label="Project selection">
         <section v-for="group in projectGroups" :key="group.label">
           <h2>{{ group.label }}</h2>
@@ -49,7 +48,7 @@ function selectProject(id: ProjectId) {
     <article :key="selectedProject.id" class="case-content" :aria-label="selectedProject.name">
       <header class="case-heading">
         <div class="case-heading__row">
-          <h1>{{ selectedProject.name }}</h1>
+          <h2>{{ selectedProject.name }}</h2>
           <button class="case-next" type="button" @click="selectProject(nextProjectId(selectedId))">
             Next project <PhArrowRight :size="24" weight="light" aria-hidden="true" />
           </button>

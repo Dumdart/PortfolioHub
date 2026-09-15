@@ -2,6 +2,10 @@
 
 > Draft for manual review. Nothing in this change set has been published or applied.
 
+## Delivery boundary
+
+This is a copy-ready planning artifact, not an instruction or authorization to access LinkedIn. State whether the baseline was pasted or whether current sections are unknown.
+
 ## Positioning summary
 
 State the recommended professional narrative in two or three sentences. Explain how backend engineering leads and how developer tooling supports it.
@@ -47,13 +51,32 @@ Use one clearly labelled block per education entry when more than one entry is p
 
 Use one clearly labelled block per project when more than one project is proposed.
 
+#### Project priority
+
+| Priority | Project | Why it supports the positioning | Verified date status | LinkedIn ordering note |
+| --- | --- | --- | --- | --- |
+
+Priority expresses the recommended story order. Do not claim LinkedIn can reproduce it, and never invent or change dates to manipulate display order.
+
 ### Skills
 
-Give an ordered list suitable for manual profile editing. Distinguish core positioning skills from supporting skills.
+Give an ordered list suitable for manual profile editing. Distinguish core positioning skills from supporting skills, then ground them in this mapping:
+
+| Skill label | Positioning tier | Evidence projects or roles | Suggested LinkedIn associations | Label check |
+| --- | --- | --- | --- | --- |
+
+Use exact verified labels when known. Mark unknown platform labels for manual verification and avoid duplicate variants.
 
 ### Featured
 
-Give an ordered list of verified public links with a suggested title and short description for each.
+Give an ordered list of verified public links with a suggested title and short description for each. Link validity does not prove that LinkedIn can generate a preview or enable Save.
+
+## Platform feasibility notes
+
+| Proposal | LinkedIn-dependent check | Status | Safe fallback or manual next step |
+| --- | --- | --- | --- |
+
+Include project ordering, skill labels and associations, and Featured-link preview behavior when relevant. Use `Unknown - verify manually` unless the user supplied current evidence. Do not inspect LinkedIn to fill this table.
 
 ## Private-fact publication approval queue
 
