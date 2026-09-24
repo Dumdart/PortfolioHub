@@ -25,9 +25,20 @@ test("Projects preserves the shared active navigation underline", () => {
   assert.doesNotMatch(projectStyles, /\.header--projects[^{}]*::after\s*{[^}]*(?:display:\s*none|transform:\s*scaleX\(0\))/);
 });
 
+test("the mobile navigation resets desktop spacing and fits short screens", () => {
+  const dropdown = [...sharedStyles.matchAll(/\.primary-nav\s*{([^}]*)}/g)]
+    .map(([, declarations]) => declarations).findLast(rule => /max-height:\s*0/.test(rule));
+  assert.ok(dropdown);
+  assert.match(dropdown, /gap:\s*0/);
+  assert.match(dropdown, /background:\s*var\(--ink\)/);
+  const open = [...sharedStyles.matchAll(/\.primary-nav--open\s*{([^}]*)}/g)].at(-1)[1];
+  assert.match(open, /max-height:\s*calc\(100dvh - var\(--site-header-height\)\)/);
+  assert.match(open, /overflow-y:\s*auto/);
+});
+
 test("Projects presents the page heading and full-page inner backdrop before project details", async () => {
   const view = await readFile(new URL("../src/views/ProjectsView.vue", import.meta.url), "utf8");
-  assert.match(view, /<SignalBackdrop variant="about"\s*\/>/);
+  assert.match(view, /<SignalBackdrop\b[^>]*variant="about"[^>]*\/>/);
   assert.match(view, /<h1>Projects<\/h1>/);
   assert.match(view, /<h2>{{ selectedProject.name }}<\/h2>/);
   assert.doesNotMatch(view, /case-field|viewBox=/);

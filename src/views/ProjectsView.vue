@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
+import BackgroundMotionControl from "../components/BackgroundMotionControl.vue";
 import { useRoute, useRouter } from "vue-router";
 import { PhArrowRight, PhCaretDown } from "@phosphor-icons/vue";
 import ProjectVisual from "../components/ProjectVisual.vue";
@@ -9,6 +10,7 @@ import "../project-case-study.css";
 
 const route = useRoute();
 const router = useRouter();
+const backgroundPaused = ref(false);
 const selectedId = computed(() => resolveProjectId(route.query.project));
 const selectedProject = computed(() => projects.find(project => project.id === selectedId.value)!);
 const projectGroups = [
@@ -22,9 +24,9 @@ function selectProject(id: ProjectId) {
 </script>
 
 <template>
-  <main class="case-page">
-    <SignalBackdrop variant="about" />
-    <aside class="case-rail">
+  <main class="inner-page case-page">
+    <SignalBackdrop variant="about" night-sky :paused="backgroundPaused" />
+    <aside class="inner-intro case-rail">
       <h1>Projects</h1>
       <p class="case-intro">Explore the projects, their architecture, and the decisions behind them.</p>
       <nav aria-label="Project selection">
@@ -43,9 +45,10 @@ function selectProject(id: ProjectId) {
           </optgroup>
         </select>
       </label>
+      <BackgroundMotionControl v-model="backgroundPaused" />
     </aside>
 
-    <article :key="selectedProject.id" class="case-content" :aria-label="selectedProject.name">
+    <article :key="selectedProject.id" class="inner-content case-content" :aria-label="selectedProject.name">
       <header class="case-heading">
         <div class="case-heading__row">
           <h2>{{ selectedProject.name }}</h2>

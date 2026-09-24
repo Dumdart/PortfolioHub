@@ -1,17 +1,21 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useReducedMotion } from "../composables/useReducedMotion";
+import LandingSky from "./LandingSky.vue";
 
 export type SignalVariant = "home" | "projects" | "goals" | "about";
 
 const props = defineProps<{
   variant: SignalVariant;
   viewBox?: string;
+  nightSky?: boolean;
+  paused?: boolean;
 }>();
 
 const root = ref<HTMLDivElement | null>(null);
 const canvas = ref<HTMLCanvasElement | null>(null);
 const reducedMotion = useReducedMotion();
+const hidden = ref(false);
 
 const darkPaths: Record<SignalVariant, string> = {
   home: "M0 0H800C824 128 714 180 750 300C784 418 690 470 744 582C798 694 702 790 792 1024H0Z",
@@ -20,7 +24,15 @@ const darkPaths: Record<SignalVariant, string> = {
   about: "M0 0H520C574 130 468 196 522 312C574 426 456 510 510 622C570 746 452 846 590 1024H0Z",
 };
 
+const seamPaths: Record<SignalVariant, string> = {
+  home: "M800 0C824 128 714 180 750 300C784 418 690 470 744 582C798 694 702 790 792 1024",
+  projects: "M466 0C500 132 380 188 426 312C470 430 368 506 420 626C475 752 360 838 448 1024",
+  goals: "M702 1024C740 900 628 826 676 698C722 578 614 502 662 382C710 260 620 178 682 0",
+  about: "M520 0C574 130 468 196 522 312C574 426 456 510 510 622C570 746 452 846 590 1024",
+};
+
 const darkPath = computed(() => darkPaths[props.variant]);
+const edgePath = computed(() => props.nightSky ? seamPaths[props.variant] : darkPath.value);
 const maskId = computed(() => `signal-paper-mask-${props.variant}`);
 
 let context: CanvasRenderingContext2D | null = null;
@@ -170,6 +182,7 @@ const animate = (time: number) => {
 };
 
 const startAnimation = () => {
+  if (props.nightSky) return;
   stopAnimation();
   if (reducedMotion.value || document.hidden) {
     pointerX = 0;
@@ -190,11 +203,16 @@ const handleScroll = () => {
 };
 
 const handleVisibility = () => {
+  hidden.value = document.hidden;
+  if (props.nightSky) return;
   if (document.hidden) stopAnimation();
   else startAnimation();
 };
 
 onMounted(() => {
+  hidden.value = document.hidden;
+  document.addEventListener("visibilitychange", handleVisibility);
+  if (props.nightSky) return;
   resizeCanvas();
   resizeObserver = new ResizeObserver(() => {
     resizeCanvas();
@@ -206,7 +224,6 @@ onMounted(() => {
     window.addEventListener("pointermove", handlePointer, { passive: true });
   }
   window.addEventListener("scroll", handleScroll, { passive: true });
-  document.addEventListener("visibilitychange", handleVisibility);
   startAnimation();
 });
 
@@ -222,8 +239,9 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="root" class="signal-backdrop" aria-hidden="true">
-    <canvas ref="canvas" class="signal-backdrop__canvas"></canvas>
+  <div ref="root" class="signal-backdrop" :class="{ 'signal-backdrop--night': nightSky }" aria-hidden="true">
+    <LandingSky v-if="nightSky" :paused="!!paused || hidden" :reduced="reducedMotion" :details="1" />
+    <canvas v-else ref="canvas" class="signal-backdrop__canvas"></canvas>
     <svg
       class="signal-backdrop__mask"
       :viewBox="viewBox ?? '0 0 1440 1024'"
@@ -241,8 +259,8 @@ onBeforeUnmount(() => {
         height="1024"
         :mask="`url(#${maskId})`"
       />
-      <path class="signal-backdrop__edge signal-backdrop__edge--echo" :d="darkPath" />
-      <path class="signal-backdrop__edge" :d="darkPath" />
+      <path v-if="!nightSky" class="signal-backdrop__edge signal-backdrop__edge--echo" :d="darkPath" />
+      <path class="signal-backdrop__edge" :d="edgePath" />
     </svg>
   </div>
 </template>
@@ -267,6 +285,15 @@ onBeforeUnmount(() => {
 .signal-backdrop__canvas {
   display: block;
 }
+
+.signal-backdrop--night { background: #07191e; }
+.signal-backdrop--night :deep(.landing-sky) { width: 63%; }
+/* Keep scenery above the reading area; the shared sky's motion stays unchanged. */
+.signal-backdrop--night :deep(.sky-cloud) { display: none; }
+.signal-backdrop--night :deep(.sky-cloud--one) { display: block; top: 108px; left: 7%; width: 72px; }
+.signal-backdrop--night :deep(.sky-star) { opacity: .18; }
+.signal-backdrop--night :deep(.sky-star--accent) { left: 3% !important; }
+.signal-backdrop--night .signal-backdrop__edge { animation: none; }
 
 .signal-backdrop__mask {
   overflow: visible;
@@ -300,6 +327,8 @@ onBeforeUnmount(() => {
 }
 
 @media (max-width: 860px) {
+  .signal-backdrop--night :deep(.landing-sky) { width: 100%; height: min(700px, 100%); }
+  .signal-backdrop--night :deep(.sky-cloud--one) { top: 100px; }
   .signal-backdrop__mask {
     display: none;
   }

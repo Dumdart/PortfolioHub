@@ -212,8 +212,8 @@ onBeforeUnmount(() => {
 
 .project-image-viewer__controls button {
   display: inline-flex;
-  min-width: 42px;
-  height: 42px;
+  min-width: 44px;
+  height: 44px;
   align-items: center;
   justify-content: center;
   gap: 8px;
@@ -316,13 +316,13 @@ onBeforeUnmount(() => {
 
   .project-image-viewer__controls {
     width: 100%;
-    gap: 6px;
+    gap: 4px;
     justify-content: flex-end;
   }
 
   .project-image-viewer__controls button {
-    min-width: 38px;
-    height: 38px;
+    min-width: 44px;
+    height: 44px;
   }
 
   .project-image-viewer__close {
@@ -331,7 +331,7 @@ onBeforeUnmount(() => {
   }
 
   .project-image-viewer__controls output {
-    width: 46px;
+    width: 40px;
   }
 
   .project-image-viewer__stage {

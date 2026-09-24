@@ -18,10 +18,13 @@ test("certificate sections present academic credentials before course badges and
   assert.match(certificateView, /<h2 id="course-badges-title">Course &amp; badges<\/h2>/);
 });
 
-test("course badges share a two-column row with a single-column mobile fallback", () => {
+test("course badges retain their content in one readable column at every width", () => {
   assert.match(certificateView, /<div class="course-badges">\s*<article v-for="badge in courseBadges"/);
-  assert.match(certificateView, /\.course-badges \{[^}]*grid-template-columns: repeat\(2, minmax\(0, 1fr\)\)/);
-  assert.match(certificateView, /@media \(max-width: 560px\)[\s\S]*\.course-badges \{ grid-template-columns: minmax\(0, 1fr\)/);
+  assert.match(certificateView, /\.course-badges \{[^}]*grid-template-columns: minmax\(0, 1fr\)/);
+  assert.match(certificateView, /badge\.issuedMonth/);
+  assert.match(certificateView, /badge\.expiryMonth/);
+  assert.match(certificateView, /badge\.credentialId/);
+  assert.match(certificateView, /:href="badge\.proofUrl"/);
 });
 
 test("diploma thesis download leads the academic section before certificate previews", () => {

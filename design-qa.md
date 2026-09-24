@@ -6,16 +6,23 @@ changes. The policies below describe the intended design; they do not certify
 that every current view already conforms. Record validation against the actual
 revision and rendered pages being reviewed.
 
+Current task guidance is indexed in [docs/README.md](docs/README.md). For the
+About/Certificates/Projects styling pass, follow the
+[inner-page styling and density brief](docs/design/inner-page-styling.md).
+It supersedes older fixed proportions and ornamental treatments below wherever
+they conflict. Reducing clutter and spatial density is the primary objective.
+
 ## Page families and reference hierarchy
 
-- About, Certificates, and Projects belong to one inner-page family. Use About
-  and Certificates together as the reference for their outer composition,
-  typography, spacing, and navigation treatment.
+- About, Certificates, and Projects belong to one inner-page family. Use the
+  completed landing page as the reference for palette, typography, restrained
+  decoration, negative space and ambient motion; adapt organization to each
+  page's content. Do not reproduce the landing intro or identity on inner pages.
 - The landing page intentionally has a different composition: a wide dark hero
   containing the profile, main statement, and primary action, alongside a white
   technology showcase. Preserve that composition; do not apply the inner-page
   split or content placement to it.
-- Both families share the site typography, ink/paper/cyan palette, signal-field
+- Both families share the site typography, ink/paper/cyan palette, stationary sky
   visual treatment, and global navigation conventions.
 - Use current source and comparable browser captures to resolve details.
   Historical screenshots and QA records are supporting evidence, not authority
@@ -24,18 +31,19 @@ revision and rendered pages being reviewed.
 ## Shared inner-page composition
 
 - On desktop, use a broad dark introductory panel and a white content area,
-  with the established `37% minmax(0, 1fr)` grid as the baseline. Preserve this
-  proportional relationship across inner pages instead of using a fixed narrow
-  Projects rail.
+  with the established `37% minmax(0, 1fr)` grid as an inspection baseline.
+  Adjust the shared proportions when needed for more comfortable reading and
+  less density; keep the resulting layout coherent across inner pages.
 - Use the established About backdrop geometry and scale for the inner-page
-  boundary: a sweeping organic edge with a restrained cyan glow. Reuse
+  boundary: a sweeping organic edge with a thin steady cyan stroke. Remove
+  diffuse glow and unnecessary gradients under the current brief. Reuse
   `SignalBackdrop` and its About variant, or an equivalent shared implementation;
   sharing colors alone does not establish matching composition.
 - Put the prominent page introduction in the dark panel. Align its heading and
   the first section in the white area at the established desktop content start,
   approximately 170 CSS pixels from the page top.
-- Use About/Certificates typography as the baseline: a strong white display
-  heading, muted supporting text, and restrained dark section headings on white.
+- Use the landing page's readable typography and adapt its scale: a strong white
+  display heading, muted supporting text, and restrained dark section headings on white.
   The selected project's title must fit this hierarchy rather than overpowering
   the page introduction.
 - Preserve generous section spacing, clear content groups, subtle separators,

@@ -2804,10 +2804,12 @@ body.dialog-open {
   .primary-nav {
     top: 76px;
     display: grid;
+    gap: 0;
+    grid-auto-rows: min-content;
     max-height: 0;
     overflow: hidden;
     border-top: 1px solid transparent;
-    background: rgba(7, 16, 21, 0.98);
+    background: var(--ink);
     opacity: 0;
     transform: translateY(-8px);
     visibility: hidden;
@@ -2819,7 +2821,9 @@ body.dialog-open {
   }
 
   .primary-nav--open {
-    max-height: 240px;
+    max-height: calc(100dvh - var(--site-header-height));
+    overflow-y: auto;
+    overscroll-behavior: contain;
     border-top-color: rgba(255, 255, 255, 0.12);
     opacity: 1;
     transform: translateY(0);

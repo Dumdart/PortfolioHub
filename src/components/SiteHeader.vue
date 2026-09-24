@@ -2,6 +2,7 @@
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { RouterLink, useRoute } from "vue-router";
 
+defineProps<{ introHidden?: boolean }>();
 const route = useRoute();
 const menuOpen = ref(false);
 const menuButton = ref<HTMLButtonElement | null>(null);
@@ -34,7 +35,7 @@ onBeforeUnmount(() => window.removeEventListener("keydown", handleKeydown));
 </script>
 
 <template>
-  <header class="site-header" :class="routeClass">
+  <header class="site-header" :class="[routeClass, { 'site-header--intro-hidden': introHidden }]" :inert="introHidden" :aria-hidden="introHidden || undefined">
     <RouterLink class="wordmark" to="/" aria-label="Paul Thumfart, home">
       Paul Thumfart
     </RouterLink>
