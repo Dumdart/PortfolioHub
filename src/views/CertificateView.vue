@@ -1,26 +1,17 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import BackgroundMotionControl from "../components/BackgroundMotionControl.vue";
 import { Icon } from "@iconify/vue";
 import { PhArrowUpRight, PhDownloadSimple, PhLockKey } from "@phosphor-icons/vue";
 import { RouterLink } from "vue-router";
-import SignalBackdrop from "../components/SignalBackdrop.vue";
+import DetailMasthead from "../components/DetailMasthead.vue";
 import { courseBadges, credentials, diplomaThesis, supportingDocuments } from "../data/credentials";
 
 const monthFormatter = new Intl.DateTimeFormat("en", { month: "short", year: "numeric", timeZone: "UTC" });
 const formatMonth = (month: string) => monthFormatter.format(new Date(`${month}-01T00:00:00Z`));
-const backgroundPaused = ref(false);
 </script>
 
 <template>
   <main class="inner-page certificates-page">
-    <SignalBackdrop variant="about" night-sky :paused="backgroundPaused" />
-
-    <section class="inner-intro">
-      <h1>Certificates</h1>
-      <p>Course badges, academic credentials, and the documents behind them.</p>
-      <BackgroundMotionControl v-model="backgroundPaused" />
-    </section>
+    <DetailMasthead title="Certificates" introduction="Education, continued learning, and the documents behind them." />
 
     <div class="inner-content certificates-content">
       <section aria-labelledby="academic-credentials-title">
@@ -97,8 +88,8 @@ const backgroundPaused = ref(false);
 .certificate-proof { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-top: 16px; padding: 8px 0; text-decoration: underline; text-underline-offset: 4px; color: var(--cyan-dark); font-size: 16px; font-weight: 600; }
 .certificate-proof:hover { background: var(--cyan-pale); }
 .academic-credentials { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
-.academic-credential { min-width: 0; padding: 0; border: 1px solid var(--line); background: var(--paper); text-align: left; cursor: pointer; }
-.academic-credential > img { display: block; width: 100%; height: 280px; object-fit: contain; object-position: top; border-bottom: 1px solid var(--line); }
+.academic-credential { display: grid; grid-template-columns: 90px minmax(0, 1fr); align-items: center; gap: 20px; min-width: 0; padding: 0; border: 0; border-bottom: 1px solid var(--line); background: var(--paper); text-align: left; cursor: pointer; }
+.academic-credential > img { display: block; width: 100%; height: 125px; object-fit: contain; object-position: top; }
 .academic-credential > span { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px; font-size: 13px; font-weight: 600; }
 .academic-credential svg { flex-shrink: 0; color: var(--cyan-dark); }
 .academic-credential:hover { border-color: var(--cyan-dark); }
@@ -110,15 +101,16 @@ const backgroundPaused = ref(false);
 .certificate-document small { display: block; margin-top: 6px; color: var(--muted); font-size: 14px; line-height: 1.6; }
 .certificate-document svg { flex-shrink: 0; color: var(--cyan-dark); }
 .certificate-document:hover strong { color: var(--cyan-dark); }
-.diploma-thesis { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0; padding: 0; margin-bottom: 32px; border: 1px solid var(--line); }
-.diploma-thesis > img { grid-column: 1 / -1; display: block; width: 100%; height: 205px; object-fit: contain; background: white; border-bottom: 1px solid var(--line); }
-.diploma-thesis > span { padding: 16px; }
+.diploma-thesis { display: grid; grid-template-columns: 140px minmax(0, 1fr) auto; gap: 16px; padding: 16px 0; margin-bottom: 32px; border: 0; border-bottom: 1px solid var(--line); }
+.diploma-thesis > img { display: block; width: 100%; height: 90px; object-fit: contain; background: white; border-bottom: 1px solid var(--line); }
+.diploma-thesis > span { padding: 0; }
 .diploma-thesis > svg { margin-right: 16px; }
 .diploma-thesis:hover { border-color: var(--cyan-dark); }
 @media (min-width: 861px) and (max-width: 1120px), (max-width: 560px) {
   .academic-credentials { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 560px) {
+  .diploma-thesis { grid-template-columns: 80px minmax(0, 1fr) auto; gap: 12px; }
   .course-badge { grid-template-columns: 32px minmax(0, 1fr); gap: 16px; }
   .course-badge__image { width: 32px; height: 32px; }
 }

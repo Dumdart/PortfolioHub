@@ -1,29 +1,25 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import BackgroundMotionControl from "../components/BackgroundMotionControl.vue";
 import { PhArrowRight } from "@phosphor-icons/vue";
-import SignalBackdrop from "../components/SignalBackdrop.vue";
+import DetailMasthead from "../components/DetailMasthead.vue";
 import SocialLinks from "../components/SocialLinks.vue";
 import { projects } from "../data/projects";
 const selectedWork = projects.filter(project => ['topicgate', 'nova'].includes(project.id));
-const backgroundPaused = ref(false);
 </script>
 
 <template>
   <main class="inner-page about-page--concise">
-    <SignalBackdrop variant="about" night-sky :paused="backgroundPaused" />
+    <DetailMasthead title="About" introduction="Backend-focused, practical by default." />
 
-    <section class="inner-intro">
-      <h1>Backend-focused, practical by default.</h1>
+    <div class="inner-content"><section class="about-introduction">
+
       <p>
         I build APIs and developer tools with C#/.NET, Python, and SQL—from code to deployment.
       </p>
 
       <SocialLinks :order="['email', 'linkedin', 'github']" />
-      <BackgroundMotionControl v-model="backgroundPaused" />
     </section>
 
-    <section class="inner-content about-overview" aria-label="Background and experience">
+    <section class="about-overview" aria-label="Background and experience">
       <section class="about-education">
         <div class="about-section-title"><h2>HTL Neufelden</h2><span>2026</span></div>
         <p>Business Informatics · Matura &amp; Diploma</p>
@@ -65,14 +61,16 @@ const backgroundPaused = ref(false);
         <p><strong>Nordfels GmbH · 2024</strong>Manufacturing plans &amp; mechatronics</p>
       </section>
     </section>
+    </div>
   </main>
 </template>
 
 <style scoped>
-.inner-intro .social-links { position: static; flex-wrap: wrap; justify-content: flex-start; gap: 8px 24px; margin-top: 32px; }
-.inner-intro :deep(.social-links a) { min-height: 44px; padding: 8px 0; border: 0; font-size: 14px; }
-.inner-intro :deep(.social-links a::after) { display: none; }
-.about-overview { display: flex; flex-direction: column; gap: var(--inner-section-gap); }
+.about-introduction .social-links { position: static; flex-wrap: wrap; justify-content: flex-start; gap: 8px 24px; margin-top: 32px; }
+.about-introduction :deep(.social-links a) { min-height: 44px; padding: 8px 0; border: 0; font-size: 14px; }
+.about-introduction :deep(.social-links a::after) { display: none; }
+.about-introduction { margin-bottom: 48px; } .about-introduction > p { max-width: 65ch; font-size: 20px; line-height: 1.65; margin: 0; } .about-introduction :deep(.social-links a) { color: var(--cyan-dark); } .about-overview { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--inner-section-gap); }
+.about-personal, .about-internships { grid-column: 1 / -1; }
 .about-overview h2 { margin: 0; font-size: 24px; font-weight: 650; letter-spacing: -.03em; }
 .about-overview p { max-width: 65ch; margin: 16px 0 0; color: var(--muted); font-size: 16px; line-height: 1.65; }
 .about-section-title { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; }
@@ -98,6 +96,7 @@ const backgroundPaused = ref(false);
   .about-work-link { grid-template-columns: 80px minmax(0, 1fr) 18px; gap: 16px; }
   .about-next dl > div { grid-template-columns: minmax(0, 1fr); gap: 8px; }
 }
+@media (max-width: 860px) { .about-overview { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 360px) {
   .about-work-link { grid-template-columns: 64px minmax(0, 1fr) 16px; gap: 12px; }
   .about-work-link img { height: 64px; }

@@ -1,0 +1,80 @@
+{
+  "id": "homelab",
+  "summary": "A self-hosted platform for personal services and projects.",
+  "roleSummary": "Linux host, containers & service delivery",
+  "contribution": "Set up an Ubuntu container host on repurposed hardware and operate personal services using Docker Compose and reverse proxying.",
+  "decisions": [
+    {
+      "title": "Make deployment repeatable",
+      "reason": "Docker Compose describes the services together, while Caddy provides the entry point to hosted applications."
+    }
+  ],
+  "lesson": "Hands-on experience taking responsibility for the host, container configuration, and delivery of personal services.",
+  "architecture": {
+    "description": "Incoming requests reach Caddy on the Ubuntu host and are routed to Docker services, including Nginx serving this portfolio. Docker Compose describes the services.",
+    "source": "flowchart LR\n        internet[Internet] --> caddy[Caddy reverse proxy]\n        subgraph host[Ubuntu host]\n          caddy --> nginx[Nginx portfolio container]\n          caddy --> services[Other Docker services]\n          compose[Docker Compose] -. configures .-> nginx\n          compose -. configures .-> services\n        end"
+  },
+  "name": "HomeLab Platform",
+  "status": "Side project",
+  "purpose": "Repurpose spare hardware into an Ubuntu-based container host for personal services and portfolio projects, with Docker Compose, reverse proxying, and hands-on ownership of deployment and operations.",
+  "result": "Self-hosted container platform",
+  "technologies": [
+    "Ubuntu",
+    "Docker",
+    "Docker Compose",
+    "Caddy",
+    "Nginx"
+  ],
+  "leftNodes": [
+    "Repurposed hardware",
+    "Ubuntu host",
+    "Docker Compose"
+  ],
+  "rightNodes": [
+    "Reverse proxy",
+    "Hosted services",
+    "Operational ownership"
+  ],
+  "coreStory": [
+    "My ageing laptop struggled to run Minecraft and its server together. When a spare PC became available at home, I configured an Ubuntu Server virtual machine to host my software in the background.",
+    "I operate it as a Docker and Nginx machine for the current Minecraft server and other personal services, with Compose and reverse proxying for deployment. The GPU-equipped PC also hosted the SmartHomeBridge detection experiment. It gives me hands-on responsibility for configuring and running my own services."
+  ],
+  "links": [],
+  "advancedBlocks": [
+    {
+      "id": "decision-1",
+      "type": "decision",
+      "heading": "Make deployment repeatable",
+      "reason": "Docker Compose describes the services together, while Caddy provides the entry point to hosted applications."
+    },
+    {
+      "id": "outcome",
+      "type": "text",
+      "heading": "Self-hosted container platform",
+      "paragraphs": [
+        "Hands-on experience taking responsibility for the host, container configuration, and delivery of personal services."
+      ]
+    },
+    {
+      "id": "technologies",
+      "type": "list",
+      "heading": "Technologies",
+      "items": [
+        "Ubuntu",
+        "Docker",
+        "Docker Compose",
+        "Caddy",
+        "Nginx"
+      ]
+    },
+    {
+      "id": "architecture",
+      "type": "architecture",
+      "heading": "Architecture",
+      "architecture": {
+        "description": "Incoming requests reach Caddy on the Ubuntu host and are routed to Docker services, including Nginx serving this portfolio. Docker Compose describes the services.",
+        "source": "flowchart LR\n        internet[Internet] --> caddy[Caddy reverse proxy]\n        subgraph host[Ubuntu host]\n          caddy --> nginx[Nginx portfolio container]\n          caddy --> services[Other Docker services]\n          compose[Docker Compose] -. configures .-> nginx\n          compose -. configures .-> services\n        end"
+      }
+    }
+  ]
+}

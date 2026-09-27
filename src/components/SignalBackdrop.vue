@@ -9,7 +9,6 @@ const props = defineProps<{
   variant: SignalVariant;
   viewBox?: string;
   nightSky?: boolean;
-  paused?: boolean;
 }>();
 
 const root = ref<HTMLDivElement | null>(null);
@@ -240,7 +239,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div ref="root" class="signal-backdrop" :class="{ 'signal-backdrop--night': nightSky }" aria-hidden="true">
-    <LandingSky v-if="nightSky" :paused="!!paused || hidden" :reduced="reducedMotion" :details="1" />
+    <LandingSky v-if="nightSky" :paused="hidden" :reduced="reducedMotion" :details="1" />
     <canvas v-else ref="canvas" class="signal-backdrop__canvas"></canvas>
     <svg
       class="signal-backdrop__mask"

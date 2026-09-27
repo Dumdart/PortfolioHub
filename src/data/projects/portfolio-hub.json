@@ -1,0 +1,82 @@
+{
+  "id": "portfolio-hub",
+  "summary": "This portfolio, from a Vue build to a self-hosted deployment.",
+  "roleSummary": "Vue application & container deployment",
+  "architecture": {
+    "description": "Vite builds the Vue application into static files. A Docker image serves them through Nginx behind Caddy on the Ubuntu host.",
+    "source": "flowchart LR\n        vue[Vue and TypeScript] --> vite[Vite build]\n        vite --> image[Docker image]\n        image --> nginx[Nginx]\n        caddy[Caddy reverse proxy] --> nginx\n        browser[Browser] --> caddy"
+  },
+  "contribution": "Built and deployed this Vue and TypeScript portfolio, from the Vite build to the Nginx container behind Caddy.",
+  "decisions": [
+    {
+      "title": "Match the infrastructure to the task",
+      "reason": "A static portfolio can be served by a small container without adding a database or application backend to operate."
+    }
+  ],
+  "lesson": "A complete build-to-deployment workflow, with infrastructure sized to the needs of a personal portfolio.",
+  "name": "PortfolioHub",
+  "purpose": "Build and operate this portfolio as a containerized Vue application on an Ubuntu homelab behind Caddy.",
+  "result": "Homelab delivery",
+  "technologies": [
+    "Vue 3",
+    "TypeScript",
+    "Vite",
+    "Docker",
+    "Nginx",
+    "Caddy"
+  ],
+  "leftNodes": [
+    "Vue 3",
+    "Vite build",
+    "Docker image"
+  ],
+  "rightNodes": [
+    "Nginx runtime",
+    "Caddy proxy",
+    "Ubuntu homelab"
+  ],
+  "status": "Personal project · Ongoing",
+  "coreStory": [
+    "Seeing friends build their own portfolios made me want to create one to present my work. I built this Vue and TypeScript site and its container deployment, and I keep returning to it to try new ideas.",
+    "It is an evolving playground, including a recent idea for the landing animation. Working from the frontend through the build and hosting setup lets me improve both the presentation and the practical delivery of the site."
+  ],
+  "links": [],
+  "advancedBlocks": [
+    {
+      "id": "decision-1",
+      "type": "decision",
+      "heading": "Match the infrastructure to the task",
+      "reason": "A static portfolio can be served by a small container without adding a database or application backend to operate."
+    },
+    {
+      "id": "outcome",
+      "type": "text",
+      "heading": "Homelab delivery",
+      "paragraphs": [
+        "A complete build-to-deployment workflow, with infrastructure sized to the needs of a personal portfolio."
+      ]
+    },
+    {
+      "id": "technologies",
+      "type": "list",
+      "heading": "Technologies",
+      "items": [
+        "Vue 3",
+        "TypeScript",
+        "Vite",
+        "Docker",
+        "Nginx",
+        "Caddy"
+      ]
+    },
+    {
+      "id": "architecture",
+      "type": "architecture",
+      "heading": "Architecture",
+      "architecture": {
+        "description": "Vite builds the Vue application into static files. A Docker image serves them through Nginx behind Caddy on the Ubuntu host.",
+        "source": "flowchart LR\n        vue[Vue and TypeScript] --> vite[Vite build]\n        vite --> image[Docker image]\n        image --> nginx[Nginx]\n        caddy[Caddy reverse proxy] --> nginx\n        browser[Browser] --> caddy"
+      }
+    }
+  ]
+}

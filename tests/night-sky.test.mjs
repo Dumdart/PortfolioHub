@@ -28,9 +28,10 @@ test("night-sky backdrop replaces the traveling canvas and preserves the shared 
   assert.doesNotMatch(html, /signal-backdrop__edge--echo/);
 });
 
-test("background pause reaches the shared sky without changing other backdrop consumers", async () => {
-  const paused = await render({ variant: "about", nightSky: true, paused: true });
-  assert.match(paused, /landing-sky is-paused/);
+test("night-sky animation remains available without a user pause control", async () => {
+  const nightSky = await render({ variant: "about", nightSky: true });
+  assert.match(nightSky, /class="landing-sky/);
+  assert.doesNotMatch(nightSky, /Pause background|Resume background/);
   const legacy = await render({ variant: "about" });
   assert.match(legacy, /<canvas/);
   assert.match(legacy, /signal-backdrop__edge--echo/);

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { PhArrowCounterClockwise, PhMinus, PhPlus, PhX } from "@phosphor-icons/vue";
-import { computed, nextTick, onBeforeUnmount, ref, watch } from "vue";
+import { computed, nextTick, onBeforeUnmount, ref, useId, watch } from "vue";
 
 interface ViewerImage {
   src: string;
@@ -18,6 +18,7 @@ const emit = defineEmits<{
 }>();
 
 const dialog = ref<HTMLDialogElement | null>(null);
+const titleId = `image-viewer-${useId()}`;
 const zoom = ref(1);
 const minimumZoom = 1;
 const maximumZoom = 4;
@@ -96,7 +97,7 @@ onBeforeUnmount(() => {
   <dialog
     ref="dialog"
     class="project-image-viewer"
-    aria-labelledby="project-image-viewer-title"
+    :aria-labelledby="titleId"
     @click="handleBackdropClick"
     @close="handleClose"
     @keydown="handleKeydown"
@@ -105,7 +106,7 @@ onBeforeUnmount(() => {
       <header class="project-image-viewer__header">
         <div>
           <span>Image preview</span>
-          <h2 id="project-image-viewer-title">{{ image.title }}</h2>
+          <h2 :id="titleId">{{ image.title }}</h2>
         </div>
 
         <div class="project-image-viewer__controls" aria-label="Image zoom controls">

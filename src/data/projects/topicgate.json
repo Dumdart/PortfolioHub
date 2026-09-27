@@ -1,0 +1,160 @@
+{
+  "id": "topicgate",
+  "summary": "Local MQTT tooling for people and AI agents.",
+  "roleSummary": "Python core, desktop UI & MCP integration",
+  "contribution": "Built a local MQTT developer tool with a desktop interface, persistent observations, and an MCP interface for agents.",
+  "decisions": [
+    {
+      "title": "Keep state and credentials local",
+      "reason": "SQLite stores observed state; the operating system keyring holds broker credentials. Inspection does not require a hosted service."
+    },
+    {
+      "title": "Separate inspection from control",
+      "reason": "MCP access is read-only by default. Publishing can affect physical devices, so control requires an explicit opt-in."
+    },
+    {
+      "title": "Make observation limits visible",
+      "reason": "Freshness and health metadata put payloads in context. Stored observations describe what TopicGate has seen, rather than claiming to be complete broker history."
+    }
+  ],
+  "lesson": "Published on PyPI and listed in the MCP Registry. The engineering focus is a clear boundary between observed data, its freshness, and actions that change a device.",
+  "architecture": {
+    "description": "MQTT messages enter a local observation layer backed by SQLite. The desktop and MCP interfaces expose this state; broker credentials stay in the system keyring. Device control is opt-in.",
+    "source": "flowchart LR\n        broker[MQTT broker] -->|messages| core[Local observation layer]\n        core <--> store[(SQLite observations)]\n        keys[System keyring] -. credentials .-> core\n        core --> desktop[Desktop observer]\n        core --> mcp[Read-only MCP]\n        mcp --> agents[AI agents]\n        control[Opt-in control] -->|publish| broker"
+  },
+  "name": "TopicGate",
+  "status": "Published on PyPI · Listed in the MCP Registry",
+  "purpose": "Local MQTT developer tooling for people and AI agents. TopicGate keeps broker credentials and observed state on the user's machine, exposes inspection through a read-only-by-default MCP server, and makes device control explicitly opt-in.",
+  "result": "Safe MQTT inspection for humans and agents",
+  "technologies": [
+    "Python",
+    "MQTT 5",
+    "MCP",
+    "SQLite",
+    "PySide6",
+    "Keyring"
+  ],
+  "leftNodes": [
+    "MQTT brokers",
+    "Topic filters",
+    "Observed messages"
+  ],
+  "rightNodes": [
+    "Local state store",
+    "Desktop observer",
+    "Read-only MCP"
+  ],
+  "media": [
+    {
+      "src": "/assets/projects/topicgate/desktop-app.png",
+      "alt": "TopicGate desktop observer showing MQTT topics, payload details, and publishing controls",
+      "title": "Desktop observer",
+      "surface": "light"
+    },
+    {
+      "src": "/assets/projects/topicgate/plugin_in_codex.png",
+      "alt": "TopicGate plugin for agents providing secure MQTT inspection skills",
+      "title": "Plugin for agents",
+      "surface": "dark"
+    },
+    {
+      "src": "/assets/projects/topicgate/topicgate_architecture.png",
+      "kind": "architecture",
+      "alt": "TopicGate architecture connecting MQTT brokers, local state, desktop observation, and MCP inspection",
+      "title": "System architecture",
+      "surface": "light"
+    }
+  ],
+  "coreStory": [
+    "I started TopicGate while working on SmartHomeBridge: I needed a better way to observe MQTT topics and diagnose what was happening. An MCP server would let agents help with that work, so I built both an MCP interface and a desktop app.",
+    "I developed it incrementally, starting with subscriptions, then adding broker profiles, health observations and history. Credentials and stored observations stay on the user's machine; MCP shares requested observations with the connected agent, and device control is explicitly opt-in."
+  ],
+  "links": [
+    {
+      "kind": "repository",
+      "label": "GitHub repository",
+      "url": "https://github.com/Dumdart/TopicGate"
+    },
+    {
+      "kind": "package",
+      "label": "View on PyPI",
+      "url": "https://pypi.org/project/topicgate/"
+    }
+  ],
+  "repository": "https://github.com/Dumdart/TopicGate",
+  "icon": {
+    "src": "https://raw.githubusercontent.com/Dumdart/TopicGate/master/src/topicgate/assets/icon.png",
+    "repository": "https://github.com/Dumdart/TopicGate"
+  },
+  "primaryMedia": 0,
+  "advancedBlocks": [
+    {
+      "id": "decision-1",
+      "type": "decision",
+      "heading": "Keep state and credentials local",
+      "reason": "SQLite stores observed state; the operating system keyring holds broker credentials. Inspection does not require a hosted service."
+    },
+    {
+      "id": "decision-2",
+      "type": "decision",
+      "heading": "Separate inspection from control",
+      "reason": "MCP access is read-only by default. Publishing can affect physical devices, so control requires an explicit opt-in."
+    },
+    {
+      "id": "decision-3",
+      "type": "decision",
+      "heading": "Make observation limits visible",
+      "reason": "Freshness and health metadata put payloads in context. Stored observations describe what TopicGate has seen, rather than claiming to be complete broker history."
+    },
+    {
+      "id": "outcome",
+      "type": "text",
+      "heading": "Safe MQTT inspection for humans and agents",
+      "paragraphs": [
+        "Published on PyPI and listed in the MCP Registry. The engineering focus is a clear boundary between observed data, its freshness, and actions that change a device."
+      ]
+    },
+    {
+      "id": "technologies",
+      "type": "list",
+      "heading": "Technologies",
+      "items": [
+        "Python",
+        "MQTT 5",
+        "MCP",
+        "SQLite",
+        "PySide6",
+        "Keyring"
+      ]
+    },
+    {
+      "id": "architecture",
+      "type": "architecture",
+      "heading": "Architecture",
+      "architecture": {
+        "description": "MQTT messages enter a local observation layer backed by SQLite. The desktop and MCP interfaces expose this state; broker credentials stay in the system keyring. Device control is opt-in.",
+        "source": "flowchart LR\n        broker[MQTT broker] -->|messages| core[Local observation layer]\n        core <--> store[(SQLite observations)]\n        keys[System keyring] -. credentials .-> core\n        core --> desktop[Desktop observer]\n        core --> mcp[Read-only MCP]\n        mcp --> agents[AI agents]\n        control[Opt-in control] -->|publish| broker"
+      }
+    },
+    {
+      "id": "media",
+      "type": "media",
+      "heading": "More project evidence",
+      "media": [
+        {
+          "src": "/assets/projects/topicgate/plugin_in_codex.png",
+          "alt": "TopicGate plugin for agents providing secure MQTT inspection skills",
+          "title": "Plugin for agents",
+          "surface": "dark"
+        },
+        {
+          "src": "/assets/projects/topicgate/topicgate_architecture.png",
+          "kind": "architecture",
+          "alt": "TopicGate architecture connecting MQTT brokers, local state, desktop observation, and MCP inspection",
+          "title": "System architecture",
+          "surface": "light"
+        }
+      ]
+    }
+  ]
+}

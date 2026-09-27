@@ -8,6 +8,7 @@ const menuOpen = ref(false);
 const menuButton = ref<HTMLButtonElement | null>(null);
 
 const routeClass = computed(() => `header--${String(route.meta.headerVariant ?? route.name ?? "home")}`);
+const detailPage = computed(() => ["about", "projects", "certificates"].includes(String(route.name)));
 
 watch(
   () => route.fullPath,
@@ -35,7 +36,7 @@ onBeforeUnmount(() => window.removeEventListener("keydown", handleKeydown));
 </script>
 
 <template>
-  <header class="site-header" :class="[routeClass, { 'site-header--intro-hidden': introHidden }]" :inert="introHidden" :aria-hidden="introHidden || undefined">
+  <header class="site-header" :class="[routeClass, { 'site-header--intro-hidden': introHidden, 'site-header--detail': detailPage }]" :inert="introHidden" :aria-hidden="introHidden || undefined">
     <RouterLink class="wordmark" to="/" aria-label="Paul Thumfart, home">
       Paul Thumfart
     </RouterLink>

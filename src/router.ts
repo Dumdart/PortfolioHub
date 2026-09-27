@@ -29,5 +29,9 @@ export const router = createRouter({
       ],
     },
   ],
-  scrollBehavior: () => ({ top: 0 }),
+  scrollBehavior: (to, from) => {
+    // Display-only query changes must not jump away from the mode control.
+    if (to.name === "projects" && from.name === "projects") return false;
+    return { top: 0 };
+  },
 });

@@ -1,38 +1,34 @@
 # PortfolioHub design documentation
 
-Updated 2026-09-24. These documents define requirements; they do not certify
-that the current worktree satisfies them. Verify source and rendered behavior.
+Updated 2026-09-26. Specifications define the required result; implementation
+and verification must be established against the actual working tree.
 
 ## Read in order
 
-1. [Repository agent guidance](../AGENTS.md) and applicable scoped guidance.
-2. [Shared design policy and QA](../design-qa.md).
-3. [Inner-page styling and density brief](design/inner-page-styling.md) for About,
-   Certificates and Projects: shared landing visual language, less clutter,
-   lower spatial density and removal of unnecessary gradients.
-4. [Shared stationary sky](animation/background-animation.md).
-5. [Landing intro and regression requirements](animation/README.md), including
-   the [intro choreography](animation/intro-animation.md) and
-   [reference-image guide](animation/images/README.md).
+1. [Agent guidance](../AGENTS.md) and scoped instructions.
+2. [Design policy and QA](../design-qa.md).
+3. [Shared detail-view design](design/detail-view-system.md).
+4. [Page requirements and visual acceptance](design/inner-page-styling.md).
+5. [Projects domain documents](projects/README.md).
+6. [Shared stationary sky](animation/background-animation.md).
+7. [Landing guidance](animation/README.md), including
+   [intro behavior](animation/intro-animation.md) and
+   [reference context](animation/images/README.md).
 
-## Authority and communication
+## Authority
 
-- The user's current request takes precedence. Within these documents, the
-  inner-page brief governs the new three-page styling pass; the animation
-  specification governs landing choreography and shared ambient motion.
-- Written requirements override generated artwork and historical screenshots.
-  The live landing page is the visual reference, not a mandate to copy its
-  content or layout literally. Inspect it before making implementation choices.
-- Distinguish requirements, tuning defaults, observed implementation, and
-  verified results. Do not label a specification as proof of completion.
-- Report each requirement as verified, incomplete, or unverified, with concrete
-  evidence and limitations. A successful build alone is not visual acceptance.
-- Keep changes to professional facts and public/private artifacts outside this
-  styling task. Preserve existing uncommitted work.
+The user's instructions govern scope. Written visual, content and interaction
+requirements govern implementation. Generated images are frameworks for assessing
+composition, restraint and grouping. They do not supply exact geometry, facts,
+approved assets or proof of completion. Use current source and real browser
+captures to verify the result.
 
-## Execution prompts
+Preserve existing unrelated work and the public/private boundary. Distinguish
+implemented, verified and unresolved requirements. A build alone does not prove
+visual acceptance or that links and user interactions work.
 
-- [Inner-page goal metaprompt](design/implementation-prompt.md): the next styling
-  and decluttering task. Saving this prompt does not start implementation.
-- [Landing animation implementation prompt](animation/implementation-prompt.md):
-  scoped to the landing experience; not the prompt for the inner-page task.
+## Execution
+
+[Goal-mode implementation metaprompt](design/implementation-prompt.md) links
+the domain requirements, image frameworks and measurable completion criteria.
+Saving this prompt does not execute it.

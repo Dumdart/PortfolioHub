@@ -20,7 +20,6 @@ const time = ref(INTRO_DURATION);
 const width = ref(1440);
 const height = ref(900);
 const reduced = useReducedMotion();
-const paused = ref(false);
 const hidden = ref(false);
 const portraitFailed = ref(false);
 const eligible = computed(() => introEligible(width.value, height.value, reduced.value));
@@ -212,7 +211,7 @@ onBeforeUnmount(() => {
       <path class="landing-boundary__edge" :d="boundary" :shape-rendering="!complete && time < 2860 ? 'crispEdges' : 'geometricPrecision'" :opacity="complete || time >= 2680 ? 1 : 0" />
     </svg>
     <div class="landing-sky-mask" :style="complete || time >= 3150 ? { clipPath: 'url(#landing-sky-clip)' } : undefined">
-      <LandingSky :paused="paused || hidden" :reduced="reduced" :details="complete ? 1 : smooth(progress(time, 3950, 4400))"
+      <LandingSky :paused="hidden" :reduced="reduced" :details="complete ? 1 : smooth(progress(time, 3950, 4400))"
         :style="{ '--moon-left': mix(90, 54, frame.unfold) + '%', '--moon-top': mix(28, 104, frame.unfold) + 'px', clipPath: `inset(0 0 ${frame.skyGroundInset}% 0)` }" />
     </div>
 
@@ -257,7 +256,6 @@ onBeforeUnmount(() => {
       </div>
       <div class="landing-motion" :style="revealedStyle(complete ? 1 : 0)" :inert="!complete">
         <button v-if="eligible" type="button" data-intro-control @click="start(true)">Replay intro</button>
-        <button v-if="!reduced" type="button" :aria-pressed="paused" @click="paused = !paused">{{ paused ? 'Resume background' : 'Pause background' }}</button>
       </div>
     </section>
     <div class="landing-technologies" :style="{ opacity: complete ? 1 : smooth(progress(time, 3450, 3850)), visibility: complete || time > 3450 ? 'visible' : 'hidden', '--sticker-progress': complete ? 1 : smooth(progress(time, 3650, 4400)) }">

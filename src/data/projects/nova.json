@@ -1,0 +1,148 @@
+{
+  "id": "nova",
+  "summary": "Day-to-day operations for the HTL Neufelden school association.",
+  "roleSummary": "Backend, data modelling & full-stack teamwork",
+  "documentation": {
+    "href": "/documents/diploma-thesis.pdf",
+    "label": "Read diploma thesis"
+  },
+  "status": "In use by the school association · Diploma project",
+  "contribution": "Started with API and backend development, then took on full-stack work in the team: data modelling, authentication and permissions, email, exports, and association workflows.",
+  "decisions": [
+    {
+      "title": "Model the association's workflows",
+      "reason": "Members, events, invitations, and billing belong in a shared relational model so that staff can work from the same records."
+    },
+    {
+      "title": "Put permissions in the backend",
+      "reason": "Authentication and authorization support controlled access to administrative operations, beyond what the Angular interface displays."
+    },
+    {
+      "title": "Build beyond data entry",
+      "reason": "Email and exports connect the stored data to the association's everyday work. These outputs are part of the product, alongside the management screens."
+    }
+  ],
+  "lesson": "Used by the HTL Neufelden school association beyond the diploma project. Working on a system for an actual organization made data consistency and usable administrative workflows central to the implementation.",
+  "architecture": {
+    "description": "An Angular client accesses the ASP.NET Core backend with authentication and roles. EF Core persists association data in MSSQL; the backend also supports email and exports.",
+    "source": "flowchart LR\n        ui[Angular client] --> api[ASP.NET Core API]\n        api --> auth[Authentication and roles]\n        api --> workflows[Association workflows]\n        workflows --> ef[EF Core]\n        ef --> db[(MSSQL)]\n        workflows --> mail[Email]\n        workflows --> exports[Billing and exports]"
+  },
+  "name": "NOVA",
+  "purpose": "Production-used operations system for the HTL Neufelden school association, covering members, event planning, invitations, email workflows, billing, and exports. The backend was built for reliable day-to-day use beyond the diploma project.",
+  "result": "Operational backend for a real organization",
+  "technologies": [
+    "ASP.NET Core",
+    "EF Core",
+    "C#",
+    "MSSQL",
+    "Angular"
+  ],
+  "leftNodes": [
+    "Members & events",
+    "Invitations & email",
+    "Billing & exports"
+  ],
+  "rightNodes": [
+    "Authentication & roles",
+    "ASP.NET Core + EF Core",
+    "MSSQL"
+  ],
+  "media": [
+    {
+      "src": "/assets/projects/nova/nova_dashboard.png",
+      "alt": "NOVA dashboard showing event-management functions for the HTL Neufelden school association",
+      "title": "Operations dashboard",
+      "surface": "light"
+    },
+    {
+      "src": "/assets/projects/nova/nova_architecture.png",
+      "kind": "architecture",
+      "alt": "NOVA application architecture diagram",
+      "title": "Application architecture",
+      "surface": "light"
+    }
+  ],
+  "coreStory": [
+    "NOVA began when the head of the HTL Neufelden school association asked our diploma-project team for a tailored management platform. We met to work through the domains it needed to cover, from members and events to invitations and billing.",
+    "My interest in APIs and data led me to start as the backend developer. I later contributed across the stack, including permissions, email and exports. The association uses the system beyond the diploma project."
+  ],
+  "links": [
+    {
+      "kind": "document",
+      "label": "Read diploma thesis",
+      "url": "/documents/diploma-thesis.pdf"
+    }
+  ],
+  "primaryMedia": 0,
+  "advancedBlocks": [
+    {
+      "id": "contribution",
+      "type": "text",
+      "heading": "My contribution",
+      "paragraphs": [
+        "Started with API and backend development, then took on full-stack work in the team: data modelling, authentication and permissions, email, exports, and association workflows."
+      ]
+    },
+    {
+      "id": "decision-1",
+      "type": "decision",
+      "heading": "Model the association's workflows",
+      "reason": "Members, events, invitations, and billing belong in a shared relational model so that staff can work from the same records."
+    },
+    {
+      "id": "decision-2",
+      "type": "decision",
+      "heading": "Put permissions in the backend",
+      "reason": "Authentication and authorization support controlled access to administrative operations, beyond what the Angular interface displays."
+    },
+    {
+      "id": "decision-3",
+      "type": "decision",
+      "heading": "Build beyond data entry",
+      "reason": "Email and exports connect the stored data to the association's everyday work. These outputs are part of the product, alongside the management screens."
+    },
+    {
+      "id": "outcome",
+      "type": "text",
+      "heading": "Operational backend for a real organization",
+      "paragraphs": [
+        "Used by the HTL Neufelden school association beyond the diploma project. Working on a system for an actual organization made data consistency and usable administrative workflows central to the implementation."
+      ]
+    },
+    {
+      "id": "technologies",
+      "type": "list",
+      "heading": "Technologies",
+      "items": [
+        "ASP.NET Core",
+        "EF Core",
+        "C#",
+        "MSSQL",
+        "Angular"
+      ]
+    },
+    {
+      "id": "architecture",
+      "type": "architecture",
+      "heading": "Architecture",
+      "architecture": {
+        "description": "An Angular client accesses the ASP.NET Core backend with authentication and roles. EF Core persists association data in MSSQL; the backend also supports email and exports.",
+        "source": "flowchart LR\n        ui[Angular client] --> api[ASP.NET Core API]\n        api --> auth[Authentication and roles]\n        api --> workflows[Association workflows]\n        workflows --> ef[EF Core]\n        ef --> db[(MSSQL)]\n        workflows --> mail[Email]\n        workflows --> exports[Billing and exports]"
+      }
+    },
+    {
+      "id": "media",
+      "type": "media",
+      "heading": "More project evidence",
+      "media": [
+        {
+          "src": "/assets/projects/nova/nova_architecture.png",
+          "kind": "architecture",
+          "alt": "NOVA application architecture diagram",
+          "title": "Application architecture",
+          "surface": "light"
+        }
+      ]
+    }
+  ]
+}

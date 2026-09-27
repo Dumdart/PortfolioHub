@@ -1,114 +1,69 @@
 # PortfolioHub Design Policies and QA
 
-This document is the reusable design policy for PortfolioHub. Apply it when
-planning, implementing, or reviewing layout, styling, navigation, and responsive
-changes. The policies below describe the intended design; they do not certify
-that every current view already conforms. Record validation against the actual
-revision and rendered pages being reviewed.
+Updated 2026-09-26. This document defines reusable design requirements.
+Validate their implementation against current source and rendered pages.
 
-Current task guidance is indexed in [docs/README.md](docs/README.md). For the
-About/Certificates/Projects styling pass, follow the
-[inner-page styling and density brief](docs/design/inner-page-styling.md).
-It supersedes older fixed proportions and ornamental treatments below wherever
-they conflict. Reducing clutter and spatial density is the primary objective.
+## Authority and references
 
-## Page families and reference hierarchy
+Read the [documentation index](docs/README.md), [shared visual specification](docs/design/detail-view-system.md),
+[page requirements and QA](docs/design/inner-page-styling.md), and
+[Projects domain contracts](docs/projects/README.md). Written requirements and
+verified facts govern implementation. Generated images are visual frameworks;
+current browser evidence establishes implementation quality.
 
-- About, Certificates, and Projects belong to one inner-page family. Use the
-  completed landing page as the reference for palette, typography, restrained
-  decoration, negative space and ambient motion; adapt organization to each
-  page's content. Do not reproduce the landing intro or identity on inner pages.
-- The landing page intentionally has a different composition: a wide dark hero
-  containing the profile, main statement, and primary action, alongside a white
-  technology showcase. Preserve that composition; do not apply the inner-page
-  split or content placement to it.
-- Both families share the site typography, ink/paper/cyan palette, stationary sky
-  visual treatment, and global navigation conventions.
-- Use current source and comparable browser captures to resolve details.
-  Historical screenshots and QA records are supporting evidence, not authority
-  to restore obsolete copy, assets, or controls.
+## Page families
 
-## Shared inner-page composition
+The landing retains its distinct composition and interactions. Projects, About
+and Certificates use a shared dark horizontal masthead with global navigation,
+page title and at most one short introductory line. A straight thin cyan border
+separates it from white content. No vertical inner-page split or organic boundary.
 
-- On desktop, use a broad dark introductory panel and a white content area,
-  with the established `37% minmax(0, 1fr)` grid as an inspection baseline.
-  Adjust the shared proportions when needed for more comfortable reading and
-  less density; keep the resulting layout coherent across inner pages.
-- Use the established About backdrop geometry and scale for the inner-page
-  boundary: a sweeping organic edge with a thin steady cyan stroke. Remove
-  diffuse glow and unnecessary gradients under the current brief. Reuse
-  `SignalBackdrop` and its About variant, or an equivalent shared implementation;
-  sharing colors alone does not establish matching composition.
-- Put the prominent page introduction in the dark panel. Align its heading and
-  the first section in the white area at the established desktop content start,
-  approximately 170 CSS pixels from the page top.
-- Use the landing page's readable typography and adapt its scale: a strong white
-  display heading, muted supporting text, and restrained dark section headings on white.
-  The selected project's title must fit this hierarchy rather than overpowering
-  the page introduction.
-- Preserve generous section spacing, clear content groups, subtle separators,
-  and comfortable margins from the organic boundary. Reuse shared design tokens
-  and existing responsive spacing conventions.
+Both families share existing fonts, ink/paper/cyan colors, restrained decoration,
+negative space, global navigation conventions and subdued stationary sky treatment.
+Do not copy landing intro choreography, portrait or technology stickers to detail pages.
 
-## Global header and navigation
+## Geometry and navigation
 
-- Keep header height consistent across routes: `--site-header-height` is 100px
-  on desktop and 76px at widths of 860px or less. Keep required content offsets
-  synchronized with that shared value.
-- Keep wordmark typography, alignment, navigation spacing, and horizontal
-  padding consistent at the same viewport and zoom level.
-- On desktop inner pages, show the active navigation link with dark text and
-  the shared cyan underline. Do not replace it with a Projects-only text-color
-  indicator or suppress its underline. Preserve accessible active-route state
-  and visible keyboard focus.
-- Integrate the header into the page without a Projects-only horizontal divider.
-- Preserve legible mobile navigation on the dark surface, including open/close
-  state, keyboard operation, and closing the menu after route navigation.
+Start with about 220px total desktop masthead height, including the navigation
+row, and about 1100px centered content width. Tune against real content and browser
+evidence. Use comfortable prose widths, 16-18px body type and generous group spacing.
+Allow scrolling; never shrink content merely to fit a screenshot.
 
-## Projects-specific content within the shared design
+Keep the shared navigation-height contract (100px desktop, 76px at mobile widths)
+and content offsets synchronized. Use readable light navigation on dark headers,
+the cyan active underline, accessible current-route state and visible focus.
+Keep wordmark, alignment and menu geometry consistent between detail pages.
+Mobile menus retain keyboard operation, opaque readable rows, short-screen
+scrolling, Escape/focus restoration and close-on-navigation behavior.
 
-- Place a prominent "Projects" heading in the dark introductory panel and
-  integrate project selection beneath it. Retain clear grouping and an obvious
-  selected-project state.
-- Keep project details in the white content area. Reflow metadata, controls,
-  tabs, and media to fit the available width; widening the introductory panel
-  alone is not a complete implementation.
-- Preserve project ordering, query-based selection and direct links, next-project
-  navigation, Product/Architecture tabs, galleries and enlarged viewers,
-  engineering decisions, outcomes, and existing project links.
-- Content-specific controls may differ from About and Certificates where their
-  function requires it. Style them with the same typography, palette, spacing,
-  focus treatment, and separator conventions.
-- On mobile, stack content and keep project selection convenient. Do not force
-  desktop proportions onto small screens or let the introductory area make
-  selection and project details unnecessarily difficult to reach.
+## Project presentation
 
-## Implementation and visual acceptance
+Default project view is only slightly more detailed than the landing:
+compact dropdown and next action, identity/status, brief personal story including
+role, one image or diagram, public links, then Advanced mode. Use a stacked reading
+sequence. Keep detailed metadata, secondary media and architecture discussion in
+Advanced mode, with one-column sections and no accordion for every block.
 
-- Reuse established components and styling. Introduce a small shared abstraction
-  only when it prevents actual drift. Remove conflicting obsolete overrides
-  instead of accumulating competing declarations.
-- Preserve unrelated work and verified content. A visual policy change does not
-  authorize changes to professional claims, credentials, or published artifacts.
-- Compare About, Certificates, and Projects at identical viewport dimensions,
-  browser zoom, scroll position, and menu state. Wait for fonts and route
-  transitions to settle. Do not infer CSS dimensions directly from screenshot
-  pixels when capture scaling is unknown.
-- Check a wide desktop, a typical laptop, widths on both sides of affected
-  breakpoints, and a mobile viewport around 390px wide.
-- Navigate between all three inner pages in both directions. Verify stable
-  header geometry, the active indicator, matching panel proportions, compatible
-  content starting positions, and no unexpected movement of shared navigation.
-- Check long project names, dense technology lists, media sizing, and menu
-  states for overflow, overlap, clipping, and cramped controls. Exercise the
-  affected project-selection, tab, gallery, viewer, and keyboard flows.
-- Check the landing page separately to confirm its intentional composition is
-  preserved. Check browser console output and framework error overlays.
-- Run the applicable repository checks required by `AGENTS.md`. For rendered
-  changes, a passing build or a source-pattern test is not visual proof.
-- Report the inspected revision or working-tree state, routes, viewport sizes,
-  interactions, results, and any unverified areas. Store temporary evidence
-  outside the repository unless committed artifacts were explicitly requested.
+Preserve IDs, order, direct links/fallback, diagrams, galleries, enlarged viewers,
+facts and public destinations. Use per-project JSON with explicit supported blocks,
+validation and a stable shared data boundary. Follow the linked interaction and
+content contracts for URL behavior, focus, word-count guidance and optional assets.
+
+## Verification and preservation
+
+Preserve unrelated work and approved public content. Do not invent personal
+motivations, qualifications, outcomes or links. Do not publish new private artifacts.
+
+Capture About, Certificates and Projects at identical viewport, zoom and menu
+states. Check shared header geometry, straight boundary, reading hierarchy and
+route transitions. Verify long titles, optional blocks, dense advanced content,
+media, focus, direct links and mobile selection. Test the landing separately.
+
+Use the [viewport and interaction checklist](docs/design/inner-page-styling.md)
+and [goal acceptance matrix](docs/projects/migration-and-qa.md). Run required
+tests, typecheck, build and diff checks. Record the inspected working tree, routes,
+viewports, interactions and unresolved limits. A passing build is not visual proof.
+Temporary browser evidence belongs outside the repository unless otherwise requested.
 
 ## Historical landing-hero QA record
 

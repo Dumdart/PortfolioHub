@@ -1,0 +1,135 @@
+{
+  "id": "smart-home-bridge",
+  "summary": "A stable MQTT bridge between an Omlet smart door and Loxone.",
+  "roleSummary": "Python integration, MQTT contract & packaging",
+  "contribution": "Built a Python integration between an Omlet smart door, MQTT, and Loxone, packaged for Docker and LoxBerry.",
+  "decisions": [
+    {
+      "title": "Use MQTT as the integration boundary",
+      "reason": "Normalizing vendor data into stable topics keeps Loxone automation independent of the Omlet API's representation."
+    },
+    {
+      "title": "Treat state and commands differently",
+      "reason": "Retained telemetry gives consumers the latest published state, while commands are validated before they reach the device."
+    }
+  ],
+  "lesson": "The Omlet door integration remains in active use. I archived the separate ESP camera and YOLO experiment because limited training data produced too many false positives.",
+  "architecture": {
+    "description": "The Python bridge translates Omlet API telemetry into retained MQTT state for Loxone. Commands travel back through the bridge for validation.",
+    "source": "flowchart LR\n        omlet[Omlet API] -->|telemetry| bridge[Python bridge]\n        bridge -->|retained state| mqtt[MQTT broker]\n        mqtt --> loxone[Loxone]\n        loxone -->|commands| mqtt\n        mqtt -->|validate commands| bridge\n        bridge -->|device control| omlet"
+  },
+  "name": "SmartHomeBridge",
+  "status": "Released as a LoxBerry plugin",
+  "purpose": "Integrate an Omlet smart coop door with MQTT and Loxone without coupling the automation controller to the vendor API. The bridge normalizes device telemetry, publishes retained state, and validates commands behind a stable local MQTT contract.",
+  "result": "Stable MQTT contract for a vendor device",
+  "technologies": [
+    "Python",
+    "MQTT",
+    "LoxBerry",
+    "Loxone",
+    "Docker",
+    "Omlet API"
+  ],
+  "leftNodes": [
+    "Omlet API",
+    "Door telemetry",
+    "MQTT commands"
+  ],
+  "rightNodes": [
+    "Retained MQTT state",
+    "Loxone automation",
+    "LoxBerry deployment"
+  ],
+  "media": [
+    {
+      "src": "/assets/projects/smarthomebridge/chicken_door_loxberry_plugin.png",
+      "alt": "SmartHomeBridge chicken door LoxBerry plugin controls",
+      "title": "Door control",
+      "surface": "light"
+    },
+    {
+      "src": "/assets/projects/smarthomebridge/chicken_camerar_loxberry_plugin.png",
+      "alt": "Experimental SmartHomeBridge chicken camera LoxBerry plugin configuration",
+      "title": "Experimental camera integration",
+      "surface": "light"
+    }
+  ],
+  "coreStory": [
+    "My dad bought an automated Omlet chicken door and asked me to connect it to our Loxone smart home. I built the Python bridge and MQTT integration, then explored how it could support other devices without direct MQTT access.",
+    "The door integration is still in use and the plugin is shared on the LoxBerry community forum. A separate camera experiment used an ESP camera and GPU-based YOLO detection, but too little training data and too many false positives led me to archive that part."
+  ],
+  "links": [
+    {
+      "kind": "repository",
+      "label": "GitHub repository",
+      "url": "https://github.com/Dumdart/SmartHomeBridge"
+    }
+  ],
+  "repository": "https://github.com/Dumdart/SmartHomeBridge",
+  "primaryMedia": 0,
+  "advancedBlocks": [
+    {
+      "id": "decision-1",
+      "type": "decision",
+      "heading": "Use MQTT as the integration boundary",
+      "reason": "Normalizing vendor data into stable topics keeps Loxone automation independent of the Omlet API's representation."
+    },
+    {
+      "id": "decision-2",
+      "type": "decision",
+      "heading": "Treat state and commands differently",
+      "reason": "Retained telemetry gives consumers the latest published state, while commands are validated before they reach the device."
+    },
+    {
+      "id": "camera-experiment",
+      "type": "text",
+      "heading": "An experiment I set aside",
+      "paragraphs": [
+        "After a fox killed some of our hens, I tried sending ESP camera images over the barn LAN connection to a GPU PC running YOLO for danger detection. Too little training data and too many false positives made it unsuitable for that job, so I archived the camera experiment. The door integration remains in use."
+      ]
+    },
+    {
+      "id": "outcome",
+      "type": "text",
+      "heading": "Stable MQTT contract for a vendor device",
+      "paragraphs": [
+        "The Omlet door integration remains in active use. I archived the separate ESP camera and YOLO experiment because limited training data produced too many false positives."
+      ]
+    },
+    {
+      "id": "technologies",
+      "type": "list",
+      "heading": "Technologies",
+      "items": [
+        "Python",
+        "MQTT",
+        "LoxBerry",
+        "Loxone",
+        "Docker",
+        "Omlet API"
+      ]
+    },
+    {
+      "id": "architecture",
+      "type": "architecture",
+      "heading": "Architecture",
+      "architecture": {
+        "description": "The Python bridge translates Omlet API telemetry into retained MQTT state for Loxone. Commands travel back through the bridge for validation.",
+        "source": "flowchart LR\n        omlet[Omlet API] -->|telemetry| bridge[Python bridge]\n        bridge -->|retained state| mqtt[MQTT broker]\n        mqtt --> loxone[Loxone]\n        loxone -->|commands| mqtt\n        mqtt -->|validate commands| bridge\n        bridge -->|device control| omlet"
+      }
+    },
+    {
+      "id": "media",
+      "type": "media",
+      "heading": "More project evidence",
+      "media": [
+        {
+          "src": "/assets/projects/smarthomebridge/chicken_camerar_loxberry_plugin.png",
+          "alt": "Experimental SmartHomeBridge chicken camera LoxBerry plugin configuration",
+          "title": "Experimental camera integration",
+          "surface": "light"
+        }
+      ]
+    }
+  ]
+}

@@ -4,7 +4,7 @@ import { PhArrowsOutSimple, PhCaretDown } from "@phosphor-icons/vue";
 import type { Project } from "../data/projects";
 import ProjectImageViewer from "./ProjectImageViewer.vue";
 
-const props = defineProps<{ architecture: NonNullable<Project["architecture"]> }>();
+const props = defineProps<{ architecture: NonNullable<Project["architecture"]>; showNotes?: boolean }>();
 const svg = ref("");
 const failed = ref(false);
 const enlarged = ref(false);
@@ -47,7 +47,7 @@ watch(() => props.architecture.source, async (source, _previous, onCleanup) => {
     <button v-if="svg" class="architecture-enlarge" type="button" @click="enlarged = true">
       View larger <PhArrowsOutSimple :size="15" aria-hidden="true" />
     </button>
-    <details class="architecture-notes">
+    <details v-if="showNotes !== false" class="architecture-notes">
       <summary>Diagram notes &amp; source <PhCaretDown :size="16" aria-hidden="true" /></summary>
       <p>{{ architecture.description }}</p>
       <pre>{{ architecture.source }}</pre>
