@@ -1,23 +1,24 @@
 <script setup lang="ts">
 import SignalBackdrop from "../components/SignalBackdrop.vue";
+import { profilePlans } from "../data/profile";
 
 const roadmap = [
   {
     number: "01",
     stage: "Next step",
-    title: "Start in backend software development",
-    date: "2026–2027",
+    title: profilePlans.internship.title,
+    date: profilePlans.internship.period,
   },
   {
     number: "02",
     stage: "Build depth",
-    title: "Study Software Engineering part-time",
-    date: "Planned for September 2027",
+    title: `Study ${profilePlans.study.subject}`,
+    date: `${profilePlans.study.start} · ${profilePlans.study.status}`,
   },
   {
     number: "03",
     stage: "Always",
-    title: "Deepen API, data, and systems engineering",
+    title: profilePlans.interests,
     date: "Ongoing",
   },
 ];

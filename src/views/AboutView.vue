@@ -3,6 +3,7 @@ import { PhArrowRight } from "@phosphor-icons/vue";
 import DetailMasthead from "../components/DetailMasthead.vue";
 import SocialLinks from "../components/SocialLinks.vue";
 import { projects } from "../data/projects";
+import { internshipStatement, profilePlans } from "../data/profile";
 const selectedWork = projects.filter(project => ['topicgate', 'nova'].includes(project.id));
 </script>
 
@@ -13,7 +14,8 @@ const selectedWork = projects.filter(project => ['topicgate', 'nova'].includes(p
     <div class="inner-content"><section class="about-introduction">
 
       <p>
-        I build APIs and developer tools with C#/.NET, Python, and SQL—from code to deployment.
+        I build backend APIs, data systems, and developer tools with C#/.NET, Python, and SQL.
+        I enjoy turning requirements into coherent systems, implementing solutions, and reviewing and testing the results.
       </p>
 
       <SocialLinks :order="['email', 'linkedin', 'github']" />
@@ -45,9 +47,11 @@ const selectedWork = projects.filter(project => ['topicgate', 'nova'].includes(p
       <section class="about-next">
         <h2>What’s next</h2>
         <dl>
-          <div><dt>Learning</dt><dd>Go &amp; distributed systems</dd></div>
-          <div><dt>2027 · planned</dt><dd>Software Engineering · FH Hagenberg<small>Part-time study</small></dd></div>
+          <div><dt>Learning</dt><dd>{{ profilePlans.learning.course }}<small>{{ profilePlans.learning.status }}</small></dd></div>
+          <div><dt>Interests</dt><dd>{{ profilePlans.interests }}</dd></div>
+          <div><dt>{{ profilePlans.study.start }} · {{ profilePlans.study.status }}</dt><dd>{{ profilePlans.study.subject }}</dd></div>
         </dl>
+        <p class="about-opportunity">{{ internshipStatement }}</p>
       </section>
 
       <section class="about-personal">
@@ -58,7 +62,14 @@ const selectedWork = projects.filter(project => ['topicgate', 'nova'].includes(p
       <section class="about-internships">
         <h2>Earlier internships</h2>
         <p><strong>WKOÖ · 2024</strong>Administrative work</p>
-        <p><strong>Nordfels GmbH · 2024</strong>Manufacturing plans &amp; mechatronics</p>
+        <section class="about-internship" aria-labelledby="nordfels-title">
+          <h3 id="nordfels-title">Nordfels GmbH · 2024</h3>
+          <ul>
+            <li>Created manufacturing plans.</li>
+            <li>Gained insight into mechatronic processes.</li>
+            <li>Contributed frontend design for a new company wiki.</li>
+          </ul>
+        </section>
       </section>
     </section>
     </div>
@@ -90,8 +101,12 @@ const selectedWork = projects.filter(project => ['topicgate', 'nova'].includes(p
 .about-next dt { color: var(--muted); font: 13px/1.7 var(--mono); }
 .about-next dd { margin: 0; font-size: 16px; line-height: 1.6; }
 .about-next dd small { display: block; margin-top: 8px; font-size: 14px; color: var(--muted); }
+.about-next .about-opportunity { margin-top: 32px; }
 .about-internships strong { display: block; margin-bottom: 8px; font-weight: 600; color: var(--ink); }
-.about-internships > p + p { margin-top: 24px; }
+.about-internship { margin-top: 24px; }
+.about-internship h3 { margin: 0; font-size: 16px; line-height: 1.65; font-weight: 600; }
+.about-internship ul { margin: 8px 0 0; padding-left: 20px; color: var(--muted); font-size: 16px; line-height: 1.65; }
+.about-internship li + li { margin-top: 4px; }
 @media (max-width: 1120px) {
   .about-work-link { grid-template-columns: 80px minmax(0, 1fr) 18px; gap: 16px; }
   .about-next dl > div { grid-template-columns: minmax(0, 1fr); gap: 8px; }
